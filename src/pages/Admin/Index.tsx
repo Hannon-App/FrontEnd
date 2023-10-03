@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 
-import Sidebar from '../../layout/Sidebar';
-import Navbar from '../../layout/Navbar';
+import Sidebar from '../../layout/Admin/Sidebar';
+import Navbar from '../../components/Navbar';
 
 const AdminDashboard = () => {
 

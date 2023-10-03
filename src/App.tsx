@@ -1,9 +1,8 @@
 // import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import LandingPage from "./pages/LandingPage/Index";
 import LoginAdmin from "./pages/Login/LoginAdmin";
-import AdminDashboard from "./pages/AdminDashboard/Index";
+import AdminDashboard from "./pages/Admin/Index";
 import Layout from "./components/Layout";
 import TenantDashboard from "./pages/Tenant/TenantDashboard/TenantDashboard";
 
