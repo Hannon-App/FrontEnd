@@ -4,10 +4,9 @@ import AdminDropdownAvatar from "./AdminDropdownAvatar"
 const AdminNavbar = () => {
   return (
     <>
-        <nav className="bg-white p-4 sticky top-0">
+        <nav className="bg-white pt-4 px-4 sticky top-0">
             <div className="container mx-auto">
-                <div className="flex items-center justify-between">
-                    <div className="text-white font-semibold text-xl">Immersive Dashboard</div>
+                <div className="flex items-center justify-end">
                     <div className="md:hidden">
                         {/* Tombol Hamburger untuk tampilan mobile */}
                         <button className="text-white">
@@ -17,7 +16,6 @@ const AdminNavbar = () => {
                     <div className="">
                         {/* Tautan-tautan menu */}
                         <AdminDropdownAvatar/>
-
                     </div>
                     
                 </div>

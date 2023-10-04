@@ -9,7 +9,7 @@ import Layout from "./components/Layout";
 import TenantDashboard from "./pages/Tenant/TenantDashboard/TenantDashboard";
 
 const App = () => {
-  axios.defaults.baseURL = "https://project2.otixx.online/";
+  axios.defaults.baseURL = "https://hannonapp.site/";
   return (
     <>
       <BrowserRouter>

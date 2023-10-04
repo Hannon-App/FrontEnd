@@ -8,31 +8,34 @@ import InputLogin from "../../components/Login/InputLogin";
 
 const LoginAdmin = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+    const handleChange = (e: any) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
     const handleLogin = () => {
-        const body = {
-            email: email,
-            password: password,
-        };
         axios
-            .post("login", body)
+            .post("admin", formData)
             .then((response) => {
-                const token = response?.data?.data?.token;
-                const email = response?.data?.data?.email;
-                const role = response?.data?.data?.role;
+                const token = response?.data?.token;
+                // const email = response?.data?.data?.email;
+                // const role = response?.data?.data?.role;
+                console.log('token : ', response?.data?.data?.token)
 
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: `Welcome to Dashboard, ${email}`,
+                    // text: `Welcome to Dashboard, ${email}`,
+                    text: `Welcome to Hannon App`,
                     confirmButtonText: "OK",
                 }).then((response) => {
 
                     if (response.isConfirmed) {
                         Cookies.set("token", token);
-                        Cookies.set("email", email);
-                        Cookies.set("role", role);
+                        // Cookies.set("email", email);
+                        // Cookies.set("role", role);
                         navigate("/AdminDashboard");
                     }
                 });
@@ -60,38 +63,37 @@ const LoginAdmin = () => {
                     <div className='bg-white rounded-md flex justify-center'>
                         <div className='w-full m-10'>
                             <h1 className='text-center text-3xl font-bold text-gray-900'>Admin Login</h1>
-                            <form onSubmit={handleLogin}>
-                                <div className=''>
-                                    <InputLogin
-                                        id="email"
-                                        name="email"
-                                        label="Email"
-                                        type="email"
-                                        placeholder="email"
-                                        icons="https://img.icons8.com/material-outlined/24/user--v1.png"
-                                        value={email}
-                                        onChange={(e: any) => setEmail(e.target.value)}
-                                    />
-                                    <InputLogin
-                                        id="password"
-                                        name="password"
-                                        label="Password"
-                                        type="password"
-                                        placeholder="password"
-                                        icons="https://img.icons8.com/material-outlined/24/lock--v1.png"
-                                        value={password}
-                                        onChange={(e: any) => setPassword(e.target.value)}
-                                    />
-                                </div>
-                                <div>
-                                    <button
-                                        type="submit"
-                                        className="group shadow-md mt-10 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-7FC9F4 hover:bg-sky-700"
-                                    >
-                                        Sign in
-                                    </button>
-                                </div>
-                            </form>
+                            <div className=''>
+                                <InputLogin
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    type="email"
+                                    placeholder="email"
+                                    icons="https://img.icons8.com/material-outlined/24/user--v1.png"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                                <InputLogin
+                                    id="password"
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    placeholder="password"
+                                    icons="https://img.icons8.com/material-outlined/24/lock--v1.png"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <button
+                                    onClick={handleLogin}
+                                    type="submit"
+                                    className="group shadow-md mt-10 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-7FC9F4 hover:bg-sky-700"
+                                >
+                                    Sign in
+                                </button>
+                            </div>
                         </div>
 
                     </div>

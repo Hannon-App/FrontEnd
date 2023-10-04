@@ -7,7 +7,7 @@ import Logo from "../../../assets/Hannon.svg";
 const AdminSidebar = () => {
   const sideLink = [
     {
-      to: "/adminDashboard",
+      to: "/AdminDashboard",
       url: <FontAwesomeIcon icon={faGauge} />,
       name: "Dashboard",
     },

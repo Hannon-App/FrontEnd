@@ -1,13 +1,42 @@
 import { useState } from 'react';
-import {BiUserCircle} from 'react-icons/bi'
+import {BiUserCircle} from 'react-icons/bi';
+import {HiOutlineLogout} from 'react-icons/hi';
+import {FaUserCog} from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDropdownAvatar = () => {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
+
+    const handleLogout = () => {
+        Swal.fire({
+          title: "Apakah anda ingin Logout?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "YES",
+        }).then(() => {
+          Cookies.remove("username");
+          Cookies.remove("token");
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Success Logout",
+            confirmButtonText: "OK",
+            cancelButtonText: "Cancel",
+          }).then((response) => {
+            if (response?.isConfirmed) {
+              navigate("/");
+            }
+          });
+        });
+      };
     return (
         <div className="relative inline-block text-left">
             <div>
@@ -20,7 +49,7 @@ const AdminDropdownAvatar = () => {
                         alt="Avatar"
                         className="w-8 h-8 rounded-full"
                     />
-                    <span className="text-gray-800">John Doe</span>
+                    {/* <span className="text-gray-800">John Doe</span> */}
                     {/* <IoIosArrowDown /> */}
                 </button>
             </div>
@@ -44,16 +73,18 @@ const AdminDropdownAvatar = () => {
                             </a>
                             <a
                                 href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                className="flex gap-2 items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
+                                <FaUserCog/>
                                 Pengaturan
                             </a>
                             <div className="border-t border-gray-100"></div>
                             <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
+                                onClick={handleLogout}
+                                className="flex gap-2 items-center px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
                             >
-                                Keluar
+                                <HiOutlineLogout/>
+                                Logout
                             </a>
                         </div>
                     </motion.div>
