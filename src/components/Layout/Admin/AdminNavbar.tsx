@@ -1,9 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-const Navbar = () => {
+import AdminDropdownAvatar from "./AdminDropdownAvatar"
+
+const AdminNavbar = () => {
   return (
-    <div>
-        <nav className="bg-blue-700 p-4 m-3 rounded-md">
+    <>
+        <nav className="bg-white p-4 sticky top-0">
             <div className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <div className="text-white font-semibold text-xl">Immersive Dashboard</div>
@@ -15,15 +17,15 @@ const Navbar = () => {
                     </div>
                     <div className="">
                         {/* Tautan-tautan menu */}
-                        {/* <Dropdown/> */}
+                        <AdminDropdownAvatar/>
 
                     </div>
                     
                 </div>
             </div>
         </nav>
-    </div>
+    </>
   )
 }
 
-export default Navbar
+export default AdminNavbar

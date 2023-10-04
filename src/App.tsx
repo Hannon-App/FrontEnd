@@ -7,7 +7,7 @@ import Layout from "./components/Layout";
 import TenantDashboard from "./pages/Tenant/TenantDashboard/TenantDashboard";
 
 const App = () => {
-  
+
   return (
     <>
       <BrowserRouter>
