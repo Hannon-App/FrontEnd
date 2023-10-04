@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import {IoIosArrowDown} from 'react-icons/io'
 import {BiUserCircle} from 'react-icons/bi'
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -32,7 +31,7 @@ const AdminDropdownAvatar = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10"
                     >
                         {/* Dropdown content */}
                         <div className="py-1">

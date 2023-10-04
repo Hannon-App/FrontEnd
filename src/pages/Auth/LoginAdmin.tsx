@@ -19,8 +19,8 @@ const LoginAdmin = () => {
             .post("login", body)
             .then((response) => {
                 const token = response?.data?.data?.token;
-                // const email = response?.data?.data?.email;
-                // const role = response?.data?.data?.role;
+                const email = response?.data?.data?.email;
+                const role = response?.data?.data?.role;
 
                 Swal.fire({
                     icon: "success",
@@ -31,8 +31,8 @@ const LoginAdmin = () => {
 
                     if (response.isConfirmed) {
                         Cookies.set("token", token);
-                        // Cookies.set("email", email);
-                        // Cookies.set("role", role);
+                        Cookies.set("email", email);
+                        Cookies.set("role", role);
                         navigate("/AdminDashboard");
                     }
                 });
