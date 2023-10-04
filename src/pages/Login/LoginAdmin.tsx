@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Swal from "sweetalert2";
-
-import InputLogin from "../../components/InputLogin"
+import InputLogin from "../../components/Login/InputLogin";
 
 const LoginAdmin = () => {
     const navigate = useNavigate();
