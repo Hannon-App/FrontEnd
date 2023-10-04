@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Swal from "sweetalert2";
+
 import InputLogin from "../../components/Login/InputLogin";
 
 const LoginAdmin = () => {
@@ -32,7 +33,7 @@ const LoginAdmin = () => {
                         Cookies.set("token", token);
                         // Cookies.set("email", email);
                         // Cookies.set("role", role);
-                        navigate("/Dashboard");
+                        navigate("/AdminDashboard");
                     }
                 });
             })
@@ -48,13 +49,13 @@ const LoginAdmin = () => {
     };
     return (
         <>
-            <div className='min-h-screen bg-E5E5E5 flex items-center justify-center'>
-                <div className='md:w-1/2 lg:w-1/3'>
+            <div className='min-h-screen bg-E5E5E5 flex justify-center'>
+                <div className='md:w-1/2 lg:w-1/3 xm:w-1/2'>
                     <div>
                         <img
-                            className="mx-auto h-60 w-auto"
-                            src="/public/Wild.svg"
-                            alt="" />
+                            className="mx-auto h-60 w-auto m-0"
+                            src="./src/assets/Hannon.svg"
+                            alt="logo" />
                     </div>
                     <div className='bg-white rounded-md flex justify-center'>
                         <div className='w-full m-10'>
@@ -67,7 +68,7 @@ const LoginAdmin = () => {
                                         label="Email"
                                         type="email"
                                         placeholder="email"
-                                        icons="https://img.icons8.com/material-outlined/24/new-post.png"
+                                        icons="https://img.icons8.com/material-outlined/24/user--v1.png"
                                         value={email}
                                         onChange={(e: any) => setEmail(e.target.value)}
                                     />
@@ -77,7 +78,7 @@ const LoginAdmin = () => {
                                         label="Password"
                                         type="password"
                                         placeholder="password"
-                                        icons="https://img.icons8.com/ios-glyphs/24/000000/lock.png"
+                                        icons="https://img.icons8.com/material-outlined/24/lock--v1.png"
                                         value={password}
                                         onChange={(e: any) => setPassword(e.target.value)}
                                     />
@@ -85,7 +86,7 @@ const LoginAdmin = () => {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="group shadow-md mt-10 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-7FC9F4 hover:bg-7FC9F4"
+                                        className="group shadow-md mt-10 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-7FC9F4 hover:bg-sky-700"
                                     >
                                         Sign in
                                     </button>
