@@ -6,6 +6,7 @@ export default {
       colors: {
         E5E5E5: "#E5E5E5",
         "7FC9F4": "#7FC9F4",
+        bgRed: "#A30D11",
         bgBtn: "#3C7ACA",
         subTitle: "#56576",
       },
