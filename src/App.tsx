@@ -1,12 +1,16 @@
 // import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import axios from "axios";
 
-import LoginAdmin from "./pages/Auth/LoginAdmin";
 import AdminDashboard from "./pages/Admin/Index";
-import TenantManagement from "./pages/Admin/TenantManagement/Index";
 import Layout from "./components/Layout";
+import LoginAdmin from "./pages/Auth/LoginAdmin";
+import TenantArchive from "./pages/Tenant/TenantArchive/TenantArchive";
 import TenantDashboard from "./pages/Tenant/TenantDashboard/TenantDashboard";
+import TenantIncome from "./pages/Tenant/TenantIncome/TenantIncome";
+import TenantItem from "./pages/Tenant/TenantItem/TenantItem";
+import TenantManagement from "./pages/Admin/TenantManagement/Index";
+import TenantRented from "./pages/Tenant/TenantRented/TenantRented";
+import axios from "axios";
 
 const App = () => {
   axios.defaults.baseURL = "https://hannonapp.site/";
@@ -20,6 +24,10 @@ const App = () => {
           <Route path="/LoginAdmin" element={<LoginAdmin />} />
           <Route path="/" element={<Layout />}>
             <Route path="/dashboard-tenant" element={<TenantDashboard />} />
+            <Route path="/item-tenant" element={<TenantItem />} />
+            <Route path="/archive-tenant" element={<TenantArchive />} />
+            <Route path="/rented-tenant" element={<TenantRented />} />
+            <Route path="/income-tenant" element={<TenantIncome />} />
           </Route>
         </Routes>
       </BrowserRouter>
