@@ -15,7 +15,8 @@ const LoginAdmin = () => {
     const handleChange = (e: any) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    const handleLogin = () => {
+    const handleLogin = (e: any) => {
+        e.preventDefault();
         axios
             .post("admin", formData)
             .then((response) => {

@@ -9,6 +9,10 @@ export default {
         bgRed: "#A30D11",
         bgBtn: "#3C7ACA",
         subTitle: "#56576",
+        'warning': '#FFC107',
+        'primary' : '#0D6EFD',
+        'info' : '#0DCAF0',
+        'danger' : '#DC3545'
       },
       backgroundImage: {
         waveLogin: "url('/vector.svg')",
