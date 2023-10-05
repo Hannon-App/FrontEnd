@@ -1,13 +1,14 @@
+import { Link, useLocation } from "react-router-dom";
 import { faBoxArchive, faDollarSign, faGauge, faGripVertical, faTags } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import Logo from "../assets/Hannon.svg";
 // import React from "react";
 
 type Props = {};
 
 const Sidebar = (props: Props) => {
+  const location = useLocation();
   const sideLink = [
     {
       to: "/dashboard-tenant",
@@ -48,7 +49,7 @@ const Sidebar = (props: Props) => {
               <div
                 className={`cursor-pointer w-full flex items-center py-2 px-4 rounded-md hover:w-auto hover:bg-bgBtn text-gray-700 hover:animations hover:text-white ${
                   location.pathname === element.to
-                    ? "bg-bgBtn  rounded-xl shadow-lg text-white font-bold"
+                    ? "bg-bgBtn  rounded-md shadow-lg text-white font-bold"
                     : "font-semibold"
                 }`}
               >
