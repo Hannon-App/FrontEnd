@@ -1,12 +1,9 @@
 import Card from "../../../components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LineChart from "../../../components/LineChart";
-import React from "react";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
-type Props = {};
-
-const TenantIncome = (props: Props) => {
+const TenantIncome = () => {
   const customItem = () => {
     return (
       <div className="flex justify-center items-center h-40 bg-white px-10">

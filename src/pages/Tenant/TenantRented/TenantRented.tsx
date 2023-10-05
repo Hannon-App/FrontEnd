@@ -1,9 +1,6 @@
 import Button from "../../../components/Button";
-import React from "react";
 
-type Props = {};
-
-const TenantRented = (props: Props) => {
+const TenantRented = () => {
   return (
     <div className="p-10 h-full">
       <div className="w-full pb-10">

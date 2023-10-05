@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import Button from "../../../components/Button";
 import Card from "../../../components/Card";
 
-type Props = {};
 
-const TenantDashboard = (props: Props) => {
+const TenantDashboard = () => {
   const [openTime, setOpenTime] = useState(""); // State for Open Time input
   const [closeTime, setCloseTime] = useState(""); // State for Close Time input
 
