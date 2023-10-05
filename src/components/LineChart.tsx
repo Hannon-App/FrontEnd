@@ -11,9 +11,6 @@ import {
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
-import React from 'react'
-
-type Props = {}
 
 ChartJS.register(
     CategoryScale,
@@ -54,7 +51,7 @@ ChartJS.register(
     ],
   };
 
-const LineChart = (props: Props) => {
+const LineChart = () => {
   return (
     <Line options={options} data={data} />
   )

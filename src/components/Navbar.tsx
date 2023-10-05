@@ -1,10 +1,7 @@
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-import { motion } from 'framer-motion'
-
-type Props = {}
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
     const [open, setOpen] = useState(false)
   return (
     <div className="w-full">

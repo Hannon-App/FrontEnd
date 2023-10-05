@@ -3,11 +3,8 @@ import { faBoxArchive, faDollarSign, faGauge, faGripVertical, faTags } from "@fo
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../assets/Hannon.svg";
-// import React from "react";
 
-type Props = {};
-
-const Sidebar = (props: Props) => {
+const Sidebar = () => {
   const location = useLocation();
   const sideLink = [
     {

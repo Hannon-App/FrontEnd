@@ -1,9 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-
-type Props = {}
-
-const TenantArchive = (props: Props) => {
+const TenantArchive = () => {
   return (
     <div className="p-10 h-full">
       <div className="w-full pb-10">
