@@ -8,6 +8,7 @@ interface Card {
 }
 const Card: React.FC<Card> = ({ title, text, color, customItem, custom, width }) => {
   return (
+
     <div className={`${width ? width : "w-80"}  shadow-lg rounded-md`}>
       <div
         className={`px-8 py-4 ${color} rounded-t-md flex items-center justify-center`}

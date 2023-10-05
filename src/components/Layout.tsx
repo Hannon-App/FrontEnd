@@ -1,6 +1,6 @@
 import Navbar from './Navbar'
 import { Outlet } from 'react-router-dom'
-import React from 'react'
+// import React from 'react'
 import Sidebar from './Sidebar'
 
 type Props = {}

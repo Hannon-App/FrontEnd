@@ -3,7 +3,7 @@ import { faBoxArchive, faDollarSign, faGauge, faGripVertical, faTags } from "@fo
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../assets/Hannon.svg";
-import React from "react";
+// import React from "react";
 
 type Props = {};
 
