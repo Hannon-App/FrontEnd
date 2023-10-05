@@ -1,11 +1,59 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
-
-import AdminLayout from "../../../components/Layout/Admin/AdminLayout"
+import Button from '../../../components/Button';
+import AdminLayout from "../../../components/Layout/Admin/AdminLayout";
 
 const TenantManagement = () => {
+    const navigate = useNavigate();
     const [tennant, setTennant] = useState<[]>([]);
+    const handleEdit = (id: number) => {
+        navigate(`/EditTenant/${id}`, {
+            state: {
+                id: id,
+            }
+        });
+    };
+    const handleDelete = (id: number) => {
+        Swal.fire({
+            title: 'Are You Sure For Delete?',
+            showCancelButton: true,
+            confirmButtonText: 'Yes!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`tenant/${id}`)
+                    // .delete(`tenant/${id}`, {
+                    //     headers: {
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // })
+                    .then((response) => {
+                        console.log(response);
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: response.data.message,
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            getAllTenant();
+                        });
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Failed",
+                            text: `Something went wrong : ${error}`,
+                            confirmButtonText: "OK",
+                        });
+                    });
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    };
     const getAllTenant = () => {
         axios
             .get("tenant")
@@ -51,20 +99,8 @@ const TenantManagement = () => {
                                         <td className="p-4 w-auto border text-center">{item?.close_time}</td>
                                         <td className="p-4 w-auto border text-center"><img src={item?.image} alt="" /></td>
                                         <td className='flex justify-center p-3 border gap-3'>
-                                            <button
-                                                id="Edit"
-                                                // onClick={onClick}
-                                                className={`flex gap-3 justify-center items-center text-white bg-warning hover:bg-yellow-200 rounded-md px-4 py-2 font-semibold`}
-                                            >
-                                                <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="edit--v1" />
-                                            </button>
-                                            <button
-                                                id="Edit"
-                                                // onClick={onClick}
-                                                className="flex gap-3 justify-center items-center text-white bg-danger hover:bg-red-200 rounded-md px-4 py-2 font-semibold"
-                                            >
-                                                <img src="https://img.icons8.com/material-outlined/24/delete-forever.png" alt="delete-forever" />
-                                            </button>
+                                            <Button textBtn="Edit" color="bg-warning" onClick={() => handleEdit(item?.id)} />
+                                            <Button textBtn="Delete" color="bg-danger" onClick={() => handleDelete(item?.id)} />
                                         </td>
                                     </tr>
                                 ))}

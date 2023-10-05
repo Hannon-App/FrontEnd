@@ -6,7 +6,7 @@ interface MainLayoutProps {
     children: ReactNode;
   }
 
-const AdminLayout = ({ children }: MainLayoutProps) => {
+const AdminLayout  = ({ children }: MainLayoutProps) => {
   return (
     <div className="flex">
       <AdminSidebar />

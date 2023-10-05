@@ -7,7 +7,7 @@ interface btnLoginProps {
     onClick?: React.MouseEventHandler;
 }
 
-const ButtonLogin: FC<btnLoginProps> = ({id, label,src, onClick}) => {
+const ButtonLogin: FC<btnLoginProps> = ({id, label, src, onClick}) => {
   return (
     <>
       <button

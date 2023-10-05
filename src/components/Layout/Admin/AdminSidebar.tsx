@@ -1,4 +1,4 @@
-import { faBoxArchive, faDollarSign, faGauge, faUsersRectangle, faTags } from "@fortawesome/free-solid-svg-icons";
+import { faGauge, faUsersRectangle } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -16,21 +16,7 @@ const AdminSidebar = () => {
       url: <FontAwesomeIcon icon={faUsersRectangle} />,
       name: "Tennant Management",
     },
-    {
-      to: "/archive-tenant",
-      url: <FontAwesomeIcon icon={faBoxArchive} />,
-      name: "Archive",
-    },
-    {
-      to: "/rented-tenant",
-      url: <FontAwesomeIcon icon={faTags} />,
-      name: "Rented",
-    },
-    {
-      to: "/income-tenant",
-      url: <FontAwesomeIcon icon={faDollarSign} />,
-      name: "Income",
-    },
+    
   ];
   return (
     <>

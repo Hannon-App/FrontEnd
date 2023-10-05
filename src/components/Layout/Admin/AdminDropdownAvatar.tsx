@@ -32,7 +32,7 @@ const AdminDropdownAvatar = () => {
             cancelButtonText: "Cancel",
           }).then((response) => {
             if (response?.isConfirmed) {
-              navigate("/");
+              navigate("/LoginAdmin");
             }
           });
         });
@@ -45,12 +45,11 @@ const AdminDropdownAvatar = () => {
                     className="flex text-gray-300 hover:text-white focus:outline-none focus:text-white items-center space-x-2"
                 >
                     <img
-                        src="https://i.pravatar.cc/300" // Ganti dengan path gambar avatar Anda
+                        src="https://i.pravatar.cc/300"
                         alt="Avatar"
                         className="w-8 h-8 rounded-full"
                     />
-                    {/* <span className="text-gray-800">John Doe</span> */}
-                    {/* <IoIosArrowDown /> */}
+                    {/* <span className="text-gray-800">{fullName}</span> */}
                 </button>
             </div>
             <AnimatePresence>
@@ -62,7 +61,6 @@ const AdminDropdownAvatar = () => {
                         transition={{ duration: 0.2 }}
                         className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10"
                     >
-                        {/* Dropdown content */}
                         <div className="py-1">
                             <a
                                 href="#"

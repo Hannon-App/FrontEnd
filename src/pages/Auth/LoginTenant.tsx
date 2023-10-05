@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import InputLogin from "../../components/Login/InputLogin";
+import InputLogin from '../../components/Login/InputLogin';
 
-const LoginAdmin = () => {
+const LoginTenant = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -18,7 +18,7 @@ const LoginAdmin = () => {
     const handleLogin = (e: any) => {
         e.preventDefault();
         axios
-            .post("admin", formData)
+            .post("tenant/login", formData)
             .then((response) => {
                 const token = response?.data?.data?.token;
                 const name = response?.data?.data?.name;
@@ -37,7 +37,7 @@ const LoginAdmin = () => {
                         Cookies.set("token", token);
                         Cookies.set("name", name);
                         Cookies.set("role", role);
-                        navigate("/AdminDashboard");
+                        navigate("/dashboard-tenant");
                     }
                 });
             })
@@ -63,7 +63,7 @@ const LoginAdmin = () => {
                     </div>
                     <div className='bg-white rounded-md flex justify-center'>
                         <div className='w-full m-10'>
-                            <h1 className='text-center text-3xl font-bold text-gray-900'>Admin Login</h1>
+                            <h1 className='text-center text-3xl font-bold text-gray-900'>Login Tenant</h1>
                             <div className=''>
                                 <InputLogin
                                     id="email"
@@ -100,9 +100,8 @@ const LoginAdmin = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
 
-export default LoginAdmin
+export default LoginTenant
