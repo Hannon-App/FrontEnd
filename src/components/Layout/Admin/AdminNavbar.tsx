@@ -1,7 +1,15 @@
-
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import AdminDropdownAvatar from "./AdminDropdownAvatar"
 
 const AdminNavbar = () => {
+    const [name, setName] = useState('');
+    useEffect(() => {
+        const savedName = Cookies.get('name');
+        if (savedName) {
+            setName(savedName);
+        }
+    }, [name]);
     return (
         <>
             <nav className="bg-white pt-4 px-4 sticky top-0">
@@ -15,7 +23,7 @@ const AdminNavbar = () => {
                         </div>
                         <div className="">
                             {/* Tautan-tautan menu */}
-                            <AdminDropdownAvatar  />
+                            <AdminDropdownAvatar fullName={name}  />
                         </div>
 
                     </div>

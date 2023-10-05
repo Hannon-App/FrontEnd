@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import {BiUserCircle} from 'react-icons/bi';
 import {HiOutlineLogout} from 'react-icons/hi';
 import {FaUserCog} from 'react-icons/fa';
@@ -7,7 +7,11 @@ import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const AdminDropdownAvatar = () => {
+interface DropdownProps {
+    fullName: string;
+}
+
+const AdminDropdownAvatar: FC<DropdownProps> = ({fullName}) => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -49,7 +53,7 @@ const AdminDropdownAvatar = () => {
                         alt="Avatar"
                         className="w-8 h-8 rounded-full"
                     />
-                    {/* <span className="text-gray-800">{fullName}</span> */}
+                    <span className="text-gray-800">{fullName}</span>
                 </button>
             </div>
             <AnimatePresence>

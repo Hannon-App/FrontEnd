@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import InputRegister from '../../components/Login/InputRegister';
+import InputRegister from '../../components/Layout/Login/InputRegister';
 
 const RegisterUser = () => {
     const navigate = useNavigate();

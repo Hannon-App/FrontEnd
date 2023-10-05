@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import InputLogin from '../../components/Login/InputLogin';
+import InputLogin from '../../components/Layout/Login/InputLogin';
 
 const LoginTenant = () => {
     const navigate = useNavigate();
