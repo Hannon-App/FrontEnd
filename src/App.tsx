@@ -2,10 +2,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AdminDashboard from "./pages/Admin/Index";
-import TenantManagement from "./pages/Admin/TenantManagement/Index";
 import RegisterUser from "./pages/Auth/RegisterUser";
 import Layout from "./components/Layout";
 import LoginAdmin from "./pages/Auth/LoginAdmin";
+import LoginTenant from "./pages/Auth/LoginTenant";
 import TenantArchive from "./pages/Tenant/TenantArchive/TenantArchive";
 import TenantDashboard from "./pages/Tenant/TenantDashboard/TenantDashboard";
 import TenantIncome from "./pages/Tenant/TenantIncome/TenantIncome";
@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/TenantManagement" element={<TenantManagement />} />
           <Route path="/LoginAdmin" element={<LoginAdmin />} />
           <Route path="/RegisterUser" element={<RegisterUser />} />
+          <Route path="/LoginTenant" element={<LoginTenant />} />
           <Route path="/" element={<Layout />}>
             <Route path="/dashboard-tenant" element={<TenantDashboard />} />
             <Route path="/item-tenant" element={<TenantItem />} />
