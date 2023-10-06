@@ -1,5 +1,5 @@
 // import React from 'react';
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Awal from "./pages/Awal";
 import AdminDashboard from "./pages/Admin/Index";
@@ -20,7 +20,7 @@ const App = () => {
   axios.defaults.baseURL = "https://hannonapp.site/";
   return (
     <>
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Awal/>} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
@@ -37,7 +37,7 @@ const App = () => {
             <Route path="/income-tenant" element={<TenantIncome />} />
           </Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </>
   )
 }
