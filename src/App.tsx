@@ -18,6 +18,7 @@ import UserDashboard from "./pages/User/Home/Dashboard/Index";
 import Detail from "./pages/User/Home/Detail/Index";
 import Item from "./pages/User/Home/Item/Index";
 import Pesanan from "./pages/User/Pesanan/BarangPesanan";
+import Pembayaran from "./pages/User/Pesanan/Pembayaran/Index";
 import axios from "axios";
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/item-user" element={<Item />} />
           <Route path="/detail-user" element={<Detail />} />
           <Route path="/pesanan-user" element={<Pesanan />} />
+          <Route path="/pembayaran-user" element={<Pembayaran />} />
           <Route path="/" element={<Layout />}>
             <Route path="/dashboard-tenant" element={<TenantDashboard />} />
             <Route path="/item-tenant" element={<TenantItem />} />

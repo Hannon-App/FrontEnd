@@ -1,7 +1,7 @@
 import LayoutUser from "../../../../components/User/LayoutUser";
 import InputSearch from "../../../../components/User/InputSearch";
 import { useState } from "react";
-import Button from "../../../../components/User/Bottom";
+import axios from "axios";
 
 const Detail = () => {
   const [data, setData] = useState<any[]>([
@@ -34,6 +34,20 @@ const Detail = () => {
     },
   ]);
 
+  const getData = () => {
+    axios
+      .get(`https://hannonapp.site/tenant/5/items`, {
+        headers: {
+          Authorization: `Bearer `,
+        },
+      })
+      .then((res) => {
+        setData(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const item = data[0]; // Mengambil item pertama dari data
 
   return (

@@ -6,8 +6,9 @@
 import LayoutUser from "../../../../components/User/LayoutUser";
 import InputSearch from "../../../../components/User/InputSearch";
 import Card from "../../../../components/User/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../../components/User/Bottom";
+import axios from "axios";
 
 const Item= () => {
     // const [name, setName] = useState('');
@@ -66,6 +67,24 @@ const Item= () => {
           },
         // Add more dummy data items as needed
       ]);
+
+      const getData = () => {
+        axios
+          .get(`https://hannonapp.site/tenant`, {
+            headers: {
+              Authorization: `Bearer `,
+            },
+          })
+          .then((res) => {
+            setData(res?.data?.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      useEffect(() => {
+        getData(); // Panggil fungsi getData saat komponen dimuat
+      }, []);
     
     return (
 <section>
@@ -94,11 +113,11 @@ const Item= () => {
             return (
               <Card
                 key={index}
-                id={item?.id}
-                title={item?.title}
-                image={item?.image}
-                price={item?.price * 14000}
-                category={item?.category}
+                id={item?.ID}
+                title={item?.Name}
+                image={item?.Image}
+                price={item?.Rent_Price + 5000}
+                category={item?.Description_Item}
                 
               />
             );
