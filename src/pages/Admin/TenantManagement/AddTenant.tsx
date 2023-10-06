@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
@@ -7,6 +7,7 @@ import AdminLayout from "../../../components/Layout/Admin/AdminLayout";
 import Button from "../../../components/Button";
 
 const AddTenant = () => {
+    // const [tenant, setTenant] = useState();
     const navigate = useNavigate();
     const token = Cookies.get("token");
     const middleware = () => {
