@@ -13,6 +13,7 @@ import TenantDashboard from "./pages/Tenant/TenantDashboard/TenantDashboard";
 import TenantIncome from "./pages/Tenant/TenantIncome/TenantIncome";
 import TenantItem from "./pages/Tenant/TenantItem/TenantItem";
 import TenantManagement from "./pages/Admin/TenantManagement/Index";
+import UserManagement from "./pages/Admin/UserManagement/Index";
 import TenantRented from "./pages/Tenant/TenantRented/TenantRented";
 import axios from "axios";
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/" element={<Awal/>} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
+          <Route path="/UserManagement" element={<UserManagement />} />
           <Route path="/AddTenant" element={<AddTenant />} />
           <Route path="/LoginAdmin" element={<LoginAdmin />} />
           <Route path="/RegisterUser" element={<RegisterUser />} />
