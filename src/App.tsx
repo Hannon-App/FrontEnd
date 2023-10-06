@@ -1,6 +1,7 @@
 // import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import Awal from "./pages/Awal";
 import AdminDashboard from "./pages/Admin/Index";
 import RegisterUser from "./pages/Auth/RegisterUser";
 import AddTenant from "./pages/Admin/TenantManagement/AddTenant";
@@ -21,7 +22,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<Awal/>} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
           <Route path="/AddTenant" element={<AddTenant />} />
