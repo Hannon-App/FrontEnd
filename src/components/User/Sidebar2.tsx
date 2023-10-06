@@ -44,7 +44,7 @@ export default function Header() {
                 isNavOpen ? menuOpenClass : menuClosedClass
               } transition-duration-300`}
             >
-              <a href="/dashboard">
+              <a href="/dashboard-user">
                 <li
                   className={`px-10 mb-2 rounded-md transition ease-in-out duration-400 hover:bg-primary hover:text-white ${
                     activePage === "dashboard"
@@ -55,7 +55,7 @@ export default function Header() {
                   <i className="fa-solid fa-house w-7"></i> Home
                 </li>
               </a>
-              <a href="">
+              <a href="/pesanan-user">
                 <li
                   className={`px-10 mb-2 rounded-md transition ease-in-out duration-400 hover:bg-primary hover:text-white ${
                     activePage === "employee"
@@ -66,7 +66,7 @@ export default function Header() {
                   <i className="fa-solid fa-list w-7"></i> Lihat Pesanan
                 </li>
               </a>
-              <a href="/user">
+              <a href="/membership-user">
                 <li
                   className={`px-10 mb-2 rounded-md transition ease-in-out duration-400 hover:bg-primary hover:text-white ${
                     activePage === "user"
@@ -77,7 +77,7 @@ export default function Header() {
                   <i className="fa-solid fa-user w-7"></i> Membership
                 </li>
               </a>
-              <a href="">
+              <a href="#">
                 <li
                   className={`px-10 mb-2 rounded-md transition ease-in-out duration-400 hover:bg-primary hover:text-white ${
                     activePage === "about"
