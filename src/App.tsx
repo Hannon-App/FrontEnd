@@ -17,6 +17,7 @@ import TenantRented from "./pages/Tenant/TenantRented/TenantRented";
 import UserDashboard from "./pages/User/Home/Dashboard/Index";
 import Detail from "./pages/User/Home/Detail/Index";
 import Item from "./pages/User/Home/Item/Index";
+import Pesanan from "./pages/User/Pesanan/BarangPesanan";
 import axios from "axios";
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/dashboard-user" element={<UserDashboard />} />
           <Route path="/item-user" element={<Item />} />
           <Route path="/detail-user" element={<Detail />} />
+          <Route path="/pesanan-user" element={<Pesanan />} />
           <Route path="/" element={<Layout />}>
             <Route path="/dashboard-tenant" element={<TenantDashboard />} />
             <Route path="/item-tenant" element={<TenantItem />} />
