@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+import Logo from "../../assets/Hannon.svg";
+
 import InputLogin from "../../components/Layout/Login/InputLogin";
 
 const LoginAdmin = () => {
@@ -58,7 +60,7 @@ const LoginAdmin = () => {
                     <div>
                         <img
                             className="mx-auto h-60 w-auto m-0"
-                            src="./src/assets/Hannon.svg"
+                            src={Logo}
                             alt="logo" />
                     </div>
                     <div className='bg-white rounded-md flex justify-center'>
