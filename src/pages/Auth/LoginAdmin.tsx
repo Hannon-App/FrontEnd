@@ -58,7 +58,7 @@ const LoginAdmin = () => {
                     <div>
                         <img
                             className="mx-auto h-60 w-auto m-0"
-                            src="./src/assets/Hannon.svg"
+                            src="/src/assets/Hannon.svg"
                             alt="logo" />
                     </div>
                     <div className='bg-white rounded-md flex justify-center'>
