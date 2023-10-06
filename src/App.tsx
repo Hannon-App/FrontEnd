@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AdminDashboard from "./pages/Admin/Index";
 import RegisterUser from "./pages/Auth/RegisterUser";
+import AddTenant from "./pages/Admin/TenantManagement/AddTenant";
 import Layout from "./components/Layout";
 import LoginAdmin from "./pages/Auth/LoginAdmin";
 import LoginTenant from "./pages/Auth/LoginTenant";
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/" element={<h1>Home</h1>} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
+          <Route path="/AddTenant" element={<AddTenant />} />
           <Route path="/LoginAdmin" element={<LoginAdmin />} />
           <Route path="/RegisterUser" element={<RegisterUser />} />
           <Route path="/LoginTenant" element={<LoginTenant />} />

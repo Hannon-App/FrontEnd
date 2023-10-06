@@ -67,11 +67,17 @@ const TenantManagement = () => {
     };
     useEffect(() => {
         getAllTenant();
-    })
+    });
+    const handleAddTenant = () => {
+        navigate('/AddTenant');
+    }
     return (
         <AdminLayout>
             <div className="bg-slate-300 h-screen p-5">
                 <main>
+                    <div className='flex justify-center'>
+                        <Button textBtn="Add Tenant" color="bg-bgBtn" onClick={handleAddTenant} />
+                    </div>
                     <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                         <table className="min-w-full table-auto bg-white shadow">
                             <thead className=" bg-sky-900">

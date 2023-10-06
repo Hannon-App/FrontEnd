@@ -24,7 +24,6 @@ const LoginTenant = () => {
                 const name = response?.data?.data?.name;
                 const role = response?.data?.data?.role;
                 console.log('token : ', response?.data?.data?.token)
-
                 Swal.fire({
                     icon: "success",
                     title: "Success",
@@ -32,7 +31,6 @@ const LoginTenant = () => {
                     // text: `Welcome to Hannon App`,
                     confirmButtonText: "OK",
                 }).then((response) => {
-
                     if (response.isConfirmed) {
                         Cookies.set("token", token);
                         Cookies.set("name", name);

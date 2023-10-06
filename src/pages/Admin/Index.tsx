@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 
-import AdminLayout from "../../components/Layout/Admin/AdminLayout"
+import AdminLayout from "../../components/Layout/Admin/AdminLayout";
 
 const AdminDashboard = () => {
     const [name, setName] = useState('');
