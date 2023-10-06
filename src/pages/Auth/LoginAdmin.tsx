@@ -5,7 +5,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 import Logo from "../../assets/Hannon.svg";
-// import imgHiking from "../../../public/img-hiking.svg";
 
 import InputLogin from "../../components/Layout/Login/InputLogin";
 
