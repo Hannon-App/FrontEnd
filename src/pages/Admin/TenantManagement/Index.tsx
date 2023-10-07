@@ -74,8 +74,8 @@ const TenantManagement = () => {
         <AdminLayout>
             <div className="bg-slate-300 h-screen p-5">
                 <main>
-                    <div className='flex justify-end'>
-                        <button className='bg-primary px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={handleAddTenant}>Add Tenant</button>
+                    <div className='flex justify-start p-3'>
+                        <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">Team management</h2>
                     </div>
                     <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                         <table className="min-w-full table-auto bg-white shadow">
@@ -100,8 +100,8 @@ const TenantManagement = () => {
                                         <td className="p-4 w-auto border text-center">{item?.email}</td>
                                         <td className="p-4 w-auto border text-center">{item?.phone}</td>
                                         <td className="p-4 w-auto border text-center">{item?.open_time} - {item?.close_time}</td>
-                                        <td className="p-4 w-auto border text-center"><img src={item?.image} alt="" /></td>
-                                        <td className='flex justify-center p-3 border gap-3'>
+                                        <td className="p-4 w-auto border"><img src={item?.images} alt="tenant-logo" className='w-20' /></td>
+                                        <td className='flex justify-center p-3 border gap-3 w-full'>
                                             <button className='bg-warning px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={() => handleEdit(item?.id)}>Edit</button>
                                             <button className='bg-danger px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={() => handleEdit(item?.id)}>Edit</button>
                                         </td>

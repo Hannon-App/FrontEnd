@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import axios from "axios";
+import Swal from "sweetalert2";
 
-import Logo from "../../assets/Hannon.svg";
-import InputLogin from '../../components/Layout/Login/InputLogin';
+
+import Logo from "../../../../assets/Hannon.svg"
+import InputLogin from '../../../../components/Layout/Login/InputLogin';
 
 const LoginUser = () => {
     const navigate = useNavigate();
@@ -25,14 +26,13 @@ const LoginUser = () => {
                 const name = response?.data?.data?.name;
                 const role = response?.data?.data?.role;
                 console.log('token : ', response?.data?.data?.token)
-
                 Swal.fire({
                     icon: "success",
                     title: "Success",
                     text: `Welcome to Hannon App, Hi ${name}`,
+                    // text: `Welcome to Hannon App`,
                     confirmButtonText: "OK",
                 }).then((response) => {
-
                     if (response.isConfirmed) {
                         Cookies.set("token", token);
                         Cookies.set("name", name);
@@ -63,42 +63,40 @@ const LoginUser = () => {
                     </div>
                     <div className='bg-white rounded-md flex justify-center'>
                         <div className='w-full m-10'>
-                            <h1 className='text-center text-3xl font-bold text-gray-900'>User Login</h1>
-                            <form onSubmit={handleLogin}>
-                                <div>
-                                    <InputLogin
-                                        id="email"
-                                        name="email"
-                                        label="Email"
-                                        type="email"
-                                        placeholder="email"
-                                        icons="https://img.icons8.com/material-outlined/24/user--v1.png"
+                            <h1 className='text-center text-3xl font-bold text-gray-900'>Login User</h1>
+                            <div className=''>
+                                <InputLogin
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    type="email"
+                                    placeholder="email"
+                                    icons="https://img.icons8.com/material-outlined/24/user--v1.png"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    />
-                                    <InputLogin
-                                        id="password"
-                                        name="password"
-                                        label="Password"
-                                        type="password"
-                                        placeholder="password"
-                                        icons="https://img.icons8.com/material-outlined/24/lock--v1.png"
+                                />
+                                <InputLogin
+                                    id="password"
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    placeholder="password"
+                                    icons="https://img.icons8.com/material-outlined/24/lock--v1.png"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    />
-                                </div>
-                                <div>
-                                    <button
-                                        // onClick={handleLogin}
-                                        type="submit"
-                                        className="group shadow-md mt-10 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-7FC9F4 hover:bg-sky-700"
-                                    >
-                                        Sign in
-                                    </button>
-                                </div>
-                            </form>
-
+                                />
+                            </div>
+                            <div>
+                                <button
+                                    onClick={handleLogin}
+                                    type="submit"
+                                    className="group shadow-md mt-10 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-7FC9F4 hover:bg-sky-700"
+                                >
+                                    Sign in
+                                </button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 // import React from 'react';
+import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Awal from "./pages/Awal";
@@ -7,7 +8,7 @@ import RegisterUser from "./pages/Auth/RegisterUser";
 import RegisterTenant from "./pages/Auth/RegisterTenant";
 import AddTenant from "./pages/Admin/TenantManagement/AddTenant";
 import Layout from "./components/Layout";
-import LoginUser from "./pages/Auth/LoginUser";
+
 import LoginAdmin from "./pages/Auth/LoginAdmin";
 import LoginTenant from "./pages/Auth/LoginTenant";
 import TenantArchive from "./pages/Tenant/TenantArchive/TenantArchive";
@@ -22,7 +23,11 @@ import Detail from "./pages/User/Home/Detail/Index";
 import Item from "./pages/User/Home/Item/Index";
 import Pesanan from "./pages/User/Pesanan/BarangPesanan";
 import Pembayaran from "./pages/User/Pesanan/Pembayaran/Index";
-import axios from "axios";
+import CardShop from "./pages/User/Pesanan/CardShoop/Index";
+import Membership from "./pages/User/Membership/Index";
+import LoginUser from "./pages/User/Auth/Login/Index";
+import TentangKami from "./pages/User/TentangKami/Index";
+
 
 const App = () => {
   axios.defaults.baseURL = "https://hannonapp.site/";
@@ -33,7 +38,6 @@ const App = () => {
           <Route path="/" element={<Awal/>} />
           <Route path="/LoginTenant" element={<LoginTenant />} />
           <Route path="/LoginAdmin" element={<LoginAdmin />} />
-          <Route path="/LoginUser" element={<LoginUser />} />
 
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
@@ -43,12 +47,17 @@ const App = () => {
           <Route path="/RegisterUser" element={<RegisterUser />} />
           <Route path="/RegisterTenant" element={<RegisterTenant />} />
           
+          <Route path="/login-user" element={<LoginUser />} />
           <Route path="/dashboard-user" element={<UserDashboard />} />
           <Route path="/item-user" element={<Item />} />
           <Route path="/detail-user" element={<Detail />} />
           <Route path="/pesanan-user" element={<Pesanan />} />
           <Route path="/pembayaran-user" element={<Pembayaran />} />
           
+          <Route path="/cardshop-user" element={<CardShop />} />
+          <Route path="/membership-user" element={<Membership />} />
+          <Route path="/tentang-kami" element={<TentangKami />} />
+
           <Route path="/" element={<Layout />}>
             <Route path="/dashboard-tenant" element={<TenantDashboard />} />
             <Route path="/item-tenant" element={<TenantItem />} />
