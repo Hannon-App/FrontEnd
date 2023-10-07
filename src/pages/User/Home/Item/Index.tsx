@@ -8,9 +8,9 @@ import Cookie from "js-cookie";
 import { useParams } from "react-router-dom";
 
 const Item = () => {
-  //
   const [data, setData] = useState<any[]>([]);
   const { id } = useParams<{ id: string }>();
+
   const token = Cookie.get("token");
   const getData = () => {
     axios
@@ -45,18 +45,16 @@ const Item = () => {
               <Button
                 label="View All"
                 classname="flex bg-gray-300 my-11 px-5 py-2 rounded items-end"
-                
               />
             </div>
-
-            <div className="h-max mx-5 grid grid-cols-4 gap-x-5 gap-y-5  my-14">
+            <div className="h-max mx-5 grid grid-cols-3 gap-x-5 gap-y-5  my-14">
               {data &&
                 data?.map((item: any) => {
                   return (
                     <Card
                       key={item.ID}
                       id={item?.ID}
-                      title={item?.name}
+                      title={item?.Name}
                       image={item?.Image}
                       price={item?.Rent_Price}
                       category={item?.Description_Item}
@@ -65,14 +63,14 @@ const Item = () => {
                 })}
             </div>
             <p className="font-semibold text-2xl my-11 ml-4">Item</p>
-            <div className="h-max mx-5 grid grid-cols-4 gap-x-5 gap-y-5  my-14">
+            <div className="h-max mx-5 grid grid-cols-3 gap-x-5 gap-y-5  my-14">
               {data &&
                 data?.map((item: any, index: any) => {
                   return (
                     <Card
                       key={index}
                       id={item?.ID}
-                      title={item?.name}
+                      title={item?.Name}
                       image={item?.Image}
                       price={item?.Rent_Price}
                       category={item?.Description_Item}
