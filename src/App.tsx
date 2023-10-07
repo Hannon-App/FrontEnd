@@ -4,8 +4,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Awal from "./pages/Awal";
 import AdminDashboard from "./pages/Admin/Index";
 import RegisterUser from "./pages/Auth/RegisterUser";
+import RegisterTenant from "./pages/Auth/RegisterTenant";
 import AddTenant from "./pages/Admin/TenantManagement/AddTenant";
 import Layout from "./components/Layout";
+import LoginUser from "./pages/Auth/LoginUser";
 import LoginAdmin from "./pages/Auth/LoginAdmin";
 import LoginTenant from "./pages/Auth/LoginTenant";
 import TenantArchive from "./pages/Tenant/TenantArchive/TenantArchive";
@@ -29,19 +31,24 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Awal/>} />
+          <Route path="/LoginTenant" element={<LoginTenant />} />
+          <Route path="/LoginAdmin" element={<LoginAdmin />} />
+          <Route path="/LoginUser" element={<LoginUser />} />
+
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
           <Route path="/UserManagement" element={<UserManagement />} />
           <Route path="/AddTenant" element={<AddTenant />} />
-          <Route path="/LoginAdmin" element={<LoginAdmin />} />
+          
           <Route path="/RegisterUser" element={<RegisterUser />} />
-          <Route path="/LoginTenant" element={<LoginTenant />} />
+          <Route path="/RegisterTenant" element={<RegisterTenant />} />
           
           <Route path="/dashboard-user" element={<UserDashboard />} />
           <Route path="/item-user" element={<Item />} />
           <Route path="/detail-user" element={<Detail />} />
           <Route path="/pesanan-user" element={<Pesanan />} />
           <Route path="/pembayaran-user" element={<Pembayaran />} />
+          
           <Route path="/" element={<Layout />}>
             <Route path="/dashboard-tenant" element={<TenantDashboard />} />
             <Route path="/item-tenant" element={<TenantItem />} />

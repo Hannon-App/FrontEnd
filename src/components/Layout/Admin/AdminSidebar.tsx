@@ -26,7 +26,7 @@ const AdminSidebar = () => {
   return (
     <>
       <div className="w-1/6 space-y-4 h-screen fixed top-0 left-0 overflow-y-auto">
-        <div className="px-12 py-5 flex gap-2 items-center">
+        <div className="px-12 py-5 flex gap-2 items-center justify-center">
           <img src={Logo} style={{ width: "7rem" }} alt="logo" />
         </div>
 

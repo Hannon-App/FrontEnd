@@ -57,7 +57,7 @@ const UserManagement = () => {
             <div className="bg-slate-300 h-screen p-5">
                 <main>
                     <div className='flex justify-end'>
-                        <button className='bg-primary px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center'>Add Tenant</button>
+                        <button className='bg-info px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center'>Add Tenant</button>
                     </div>
                     <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                         <table className="min-w-full table-auto bg-white shadow">
