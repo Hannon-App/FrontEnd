@@ -20,7 +20,7 @@ const LoginUser = () => {
     const handleLogin = (e: any) => {
         e.preventDefault();
         axios
-            .post("/login-user", formData)
+            .post("login", formData)
             .then((response) => {
                 const token = response?.data?.data?.token;
                 const name = response?.data?.data?.name;

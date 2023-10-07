@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
-import Button from '../../../components/Button';
 import AdminLayout from "../../../components/Layout/Admin/AdminLayout";
 
 const TenantManagement = () => {
@@ -75,8 +74,8 @@ const TenantManagement = () => {
         <AdminLayout>
             <div className="bg-slate-300 h-screen p-5">
                 <main>
-                    <div className='flex justify-center'>
-                        <Button textBtn="Add Tenant" color="bg-bgBtn" onClick={handleAddTenant} />
+                    <div className='flex justify-start p-3'>
+                        <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">Team management</h2>
                     </div>
                     <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                         <table className="min-w-full table-auto bg-white shadow">
@@ -87,8 +86,7 @@ const TenantManagement = () => {
                                     <th className="p-3 border">Alamat</th>
                                     <th className="p-3 border">Email</th>
                                     <th className="p-3 border">No. Handphone</th>
-                                    <th className="p-3 border">Open Time</th>
-                                    <th className="p-3 border">Close Time</th>
+                                    <th className="p-3 border">Jam Buka Toko</th>
                                     <th className="p-3 border">Images</th>
                                     <th className="p-3 border">Action</th>
                                 </tr>
@@ -101,12 +99,11 @@ const TenantManagement = () => {
                                         <td className="p-4 w-auto border text-center">{item?.address}</td>
                                         <td className="p-4 w-auto border text-center">{item?.email}</td>
                                         <td className="p-4 w-auto border text-center">{item?.phone}</td>
-                                        <td className="p-4 w-auto border text-center">{item?.open_time}</td>
-                                        <td className="p-4 w-auto border text-center">{item?.close_time}</td>
-                                        <td className="p-4 w-auto border text-center"><img src={item?.image} alt="" /></td>
-                                        <td className='flex justify-center p-3 border gap-3'>
-                                            <Button textBtn="Edit" color="bg-warning" onClick={() => handleEdit(item?.id)} />
-                                            <Button textBtn="Delete" color="bg-danger" onClick={() => handleDelete(item?.id)} />
+                                        <td className="p-4 w-auto border text-center">{item?.open_time} - {item?.close_time}</td>
+                                        <td className="p-4 w-auto border"><img src={item?.images} alt="tenant-logo" className='w-20' /></td>
+                                        <td className='flex justify-center p-3 border gap-3 w-full'>
+                                            <button className='bg-warning px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={() => handleEdit(item?.id)}>Edit</button>
+                                            <button className='bg-danger px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={() => handleEdit(item?.id)}>Edit</button>
                                         </td>
                                     </tr>
                                 ))}
