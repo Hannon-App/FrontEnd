@@ -1,4 +1,4 @@
-// import React from 'react';
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Awal from "./pages/Awal";
@@ -41,7 +41,7 @@ const App = () => {
           
           <Route path="/login-user" element={<LoginUser />} />
           <Route path="/dashboard-user" element={<UserDashboard />} />
-          <Route path="/item-user" element={<Item />} />
+          <Route path="/item-user/:id" element={<Item />} />
           <Route path="/detail-user" element={<Detail />} />
           <Route path="/pesanan-user" element={<Pesanan />} />
           <Route path="/pembayaran-user" element={<Pembayaran />} />

@@ -3,7 +3,7 @@ import Button from "./Bottom";
 interface CardProps {
   id: string;
   title?: string;
-  image?: string;
+  image?: string ;
   category?: string;
   price?: string | number;
   onClick?: React.MouseEventHandler;
