@@ -22,6 +22,7 @@ import Pembayaran from "./pages/User/Pesanan/Pembayaran/Index";
 import CardShop from "./pages/User/Pesanan/CardShoop/Index";
 import Membership from "./pages/User/Membership/Index";
 import LoginUser from "./pages/User/Auth/Login/Index";
+import TentangKami from "./pages/User/TentangKami/Index";
 import axios from "axios";
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/pembayaran-user" element={<Pembayaran />} />
           <Route path="/cardshop-user" element={<CardShop />} />
           <Route path="/membership-user" element={<Membership />} />
+          <Route path="/tentang-kami" element={<TentangKami />} />
 
           <Route path="/" element={<Layout />}>
             <Route path="/dashboard-tenant" element={<TenantDashboard />} />
