@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 // import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 import AdminLayout from "../../../components/Layout/Admin/AdminLayout";
 
@@ -15,44 +15,44 @@ const TenantManagement = () => {
     //         }
     //     });
     // };
-    const handleDelete = (id: number) => {
-        Swal.fire({
-            title: 'Are You Sure For Delete?',
-            showCancelButton: true,
-            confirmButtonText: 'Yes!',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios
-                    .delete(`tenant/${id}`)
-                    // .delete(`tenant/${id}`, {
-                    //     headers: {
-                    //         Authorization: `Bearer ${token}`,
-                    //     },
-                    // })
-                    .then((response) => {
-                        console.log(response);
-                        Swal.fire({
-                            icon: "success",
-                            title: "Success",
-                            text: response.data.message,
-                            confirmButtonText: "OK",
-                        }).then(() => {
-                            getAllTenant();
-                        });
-                    })
-                    .catch((error) => {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Failed",
-                            text: `Something went wrong : ${error}`,
-                            confirmButtonText: "OK",
-                        });
-                    });
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-            }
-        })
-    };
+    // const handleDelete = (id: number) => {
+    //     Swal.fire({
+    //         title: 'Are You Sure For Delete?',
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Yes!',
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             axios
+    //                 .delete(`tenant/${id}`)
+    //                 // .delete(`tenant/${id}`, {
+    //                 //     headers: {
+    //                 //         Authorization: `Bearer ${token}`,
+    //                 //     },
+    //                 // })
+    //                 .then((response) => {
+    //                     console.log(response);
+    //                     Swal.fire({
+    //                         icon: "success",
+    //                         title: "Success",
+    //                         text: response.data.message,
+    //                         confirmButtonText: "OK",
+    //                     }).then(() => {
+    //                         getAllTenant();
+    //                     });
+    //                 })
+    //                 .catch((error) => {
+    //                     Swal.fire({
+    //                         icon: "error",
+    //                         title: "Failed",
+    //                         text: `Something went wrong : ${error}`,
+    //                         confirmButtonText: "OK",
+    //                     });
+    //                 });
+    //         } else if (result.isDenied) {
+    //             Swal.fire('Changes are not saved', '', 'info')
+    //         }
+    //     })
+    // };
     const getAllTenant = () => {
         axios
             .get("tenant")
