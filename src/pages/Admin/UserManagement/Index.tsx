@@ -10,14 +10,6 @@ const UserManagement = () => {
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
     const token = Cookies.get("token");
-
-    // const handleEdit = (id: number) => {
-    //     navigate(`/EditUser/${id}`, {
-    //         state: {
-    //             id: id,
-    //         }
-    //     });
-    // }
     const middleware = () => {
         if (token === undefined) {
             Swal.fire({

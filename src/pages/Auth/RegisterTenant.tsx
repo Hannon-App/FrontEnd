@@ -179,7 +179,9 @@ const RegisterTenant = () => {
                   </button>
                 </div>
               </form>
-
+              <div className="flex justify-center mt-7">
+                <h2 className='font-medium text-blue-600 hover:underline'><a href="/RegisterTenant">Login</a></h2>
+              </div>
             </div>
           </div>
         </div>
