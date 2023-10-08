@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import LayoutUser from "../../../components/User/LayoutUser";
 import Gambar from "../../../assets/Rinjani.svg"; // Ganti dengan path ke gambar perusahaan Anda
