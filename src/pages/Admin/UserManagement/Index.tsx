@@ -12,6 +12,14 @@ const UserManagement = () => {
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
     const token = Cookies.get("token");
+
+    const handleEdit = (id: number) => {
+        navigate(`/EditUser/${id}`, {
+            state: {
+                id: id,
+            }
+        });
+    }
     const middleware = () => {
         if (token === undefined) {
             Swal.fire({
@@ -54,10 +62,11 @@ const UserManagement = () => {
 
     return (
         <AdminLayout>
-            <div className="bg-slate-300 h-screen p-5">
+            <div className="bg-slate-300 max-h-full p-5">
                 <main>
-                    <div className='flex justify-end'>
-                        <button className='bg-info px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center'>Add Tenant</button>
+                    <div className='flex justify-start p-3'>
+                        {/* <button className='bg-info px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center'>Add Tenant</button> */}
+                        <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">User Management</h2>
                     </div>
                     <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                         <table className="min-w-full table-auto bg-white shadow">
@@ -65,7 +74,6 @@ const UserManagement = () => {
                                 <tr className="text-white">
                                     <th className="w-10 p-3 border ">No. </th>
                                     <th className="p-3 border">Nama</th>
-                                    <th className="p-3 border">Alamat</th>
                                     <th className="p-3 border">Email</th>
                                     <th className="p-3 border">No. Handphone</th>
                                     <th className="p-3 border">Alamat</th>
@@ -79,13 +87,12 @@ const UserManagement = () => {
                                     <tr key={index}>
                                         <td className="w-10 border text-center">{index + 1}.</td>
                                         <td className="p-4 w-auto border text-center">{item?.name}</td>
-                                        <td className="p-4 w-auto border text-center">{item?.address}</td>
                                         <td className="p-4 w-auto border text-center">{item?.email}</td>
                                         <td className="p-4 w-auto border text-center">{item?.phone_number}</td>
-                                        <td className="p-4 w-auto border text-center">{item?.address}</td>
-                                        <td className="p-4 w-auto border text-center">{item?.profile_photo}</td>
-                                        <td className="p-4 w-auto border text-center"><img src={item?.image} alt="" /></td>
-                                        <td className='flex justify-center p-3 border gap-3'>
+                                        <td className="p-4  border text-center w-64">{item?.address}</td>
+                                        <td className="p-4 w-auto border text-center"><img src={item?.profil_photo} alt="profil_photo" className='w-20'/></td>
+                                        <td className="p-4 w-auto border text-center"><img src={item?.image} alt="ktp_photo" className='w-20'/></td>
+                                        <td className='flex justify-center h-full p-3 border gap-3'>
                                             <button className='bg-warning px-5 py-3 hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' >Edit</button>
                                             <button className='bg-danger px-5 py-3 hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' >Delete</button>
                                         </td>

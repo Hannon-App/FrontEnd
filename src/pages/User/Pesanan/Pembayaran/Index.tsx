@@ -8,12 +8,10 @@ const Pembayaran = () => {
   
   
   const handleConfirm = () => {
-    // Mengatur state Attandence menjadi true untuk membuka pop-up
+    
     setAddAttandence(true);
   };
 
-  
-  
   return (
     <section>
       <LayoutUser>

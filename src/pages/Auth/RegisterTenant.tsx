@@ -9,9 +9,9 @@ const RegisterTenant = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
-    phone_number: '',
+    phone: '',
     address: '',
-    ktp_photo: null,
+    images: null,
     open_time: '',
     close_time: '',
     email: '',
@@ -35,16 +35,18 @@ const RegisterTenant = () => {
     e.preventDefault();
     const formDataToSend = new FormData();
     formDataToSend.append('name', formData.name);
-    formDataToSend.append('phone_number', formData.phone_number);
+    formDataToSend.append('phone', formData.phone);
     formDataToSend.append('address', formData.address);
     formDataToSend.append('email', formData.email);
     formDataToSend.append('password', formData.password);
-    if (formData.ktp_photo) {
-      formDataToSend.append('ktp_photo', formData.ktp_photo);
+    formDataToSend.append('open_time', formData.open_time);
+    formDataToSend.append('close_time', formData.close_time);
+    if (formData.images) {
+      formDataToSend.append('images', formData.images);
     }
 
     axios
-      .post("users", formDataToSend, {
+      .post("tenant", formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -57,7 +59,7 @@ const RegisterTenant = () => {
           text: `Selamat Akun anda berhasil dibuat! Silahkan Login`,
           confirmButtonText: "OK",
         }).then(() => {
-          navigate("/LoginAdmin");
+          navigate("/LoginTenant");
         });
       })
       .catch((error) => {
@@ -87,19 +89,19 @@ const RegisterTenant = () => {
                     name="name"
                     label="Nama Toko"
                     type="text"
-                    placeholder="Masukkan Nama Lengkap"
+                    placeholder="Masukkan Nama Toko"
                     icons="https://img.icons8.com/material-outlined/24/user--v1.png"
                     value={formData.name}
                     onChange={handleChange}
                   />
                   <InputRegister
-                    id='phone_number'
-                    name='phone_number'
+                    id='phone'
+                    name='phone'
                     label='No. Handphone'
                     type='text'
-                    placeholder='Masukkan No HP'
+                    placeholder='Masukkan No Handphone'
                     icons='https://img.icons8.com/material-outlined/24/phone--v1.png'
-                    value={formData.phone_number}
+                    value={formData.phone}
                     onChange={handleChange}
                   />
                   <InputRegister

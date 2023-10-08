@@ -1,4 +1,4 @@
-// import React from 'react';
+
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import RegisterTenant from "./pages/Auth/RegisterTenant";
 import AddTenant from "./pages/Admin/TenantManagement/AddTenant";
 import Layout from "./components/Layout";
 
+import EditUser from "./pages/Admin/UserManagement/EditUser";
 import LoginAdmin from "./pages/Auth/LoginAdmin";
 import LoginTenant from "./pages/Auth/LoginTenant";
 import TenantArchive from "./pages/Tenant/TenantArchive/TenantArchive";
@@ -35,13 +36,14 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Awal/>} />
+          <Route path="/" element={<UserDashboard/>} />
           <Route path="/LoginTenant" element={<LoginTenant />} />
           <Route path="/LoginAdmin" element={<LoginAdmin />} />
 
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
           <Route path="/UserManagement" element={<UserManagement />} />
+          <Route path="/EditUser/:id" element={<EditUser />} />
           <Route path="/AddTenant" element={<AddTenant />} />
           
           <Route path="/RegisterUser" element={<RegisterUser />} />
@@ -49,8 +51,8 @@ const App = () => {
           
           <Route path="/login-user" element={<LoginUser />} />
           <Route path="/dashboard-user" element={<UserDashboard />} />
-          <Route path="/item-user" element={<Item />} />
-          <Route path="/detail-user" element={<Detail />} />
+          <Route path="/item-user/:id" element={<Item />} />
+          <Route path="/detail-pesanan/:id" element={<Detail />} />
           <Route path="/pesanan-user" element={<Pesanan />} />
           <Route path="/pembayaran-user" element={<Pembayaran />} />
           

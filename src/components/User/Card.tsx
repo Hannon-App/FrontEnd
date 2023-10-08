@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Button from "./Bottom";
+import { useNavigate } from "react-router-dom";
 interface CardProps {
   id: string;
   title?: string;
@@ -9,14 +10,12 @@ interface CardProps {
   onClick?: React.MouseEventHandler;
 }
 
-const Card: FC<CardProps> = ({
-  id,
-  title,
-  image,
-  category,
-  price,
-  onClick,
-}) => {
+const Card: FC<CardProps> = ({ id, title, image, price }) => {
+  const navigate = useNavigate();
+  const HandleSewa = () => {
+    console.log("Tombol View All Ditekan"); // Cetak pesan untuk debugging
+    navigate(`/detail-pesanan/${id}`);
+  };
   return (
     <div
       id={id}
@@ -43,15 +42,17 @@ const Card: FC<CardProps> = ({
           }}
         ></i>
       </div>
-
       <div className="my-5">
         <h2 className="font-semibold my-2 truncate">{title}</h2>
-        <p>{category}</p>
         <i className="fa-solid fa-star"></i>
         <p className="font-bold">{price}</p>
       </div>
       <div className="w-40 h-10 my-5">
-        <Button label="sewa" onClick={onClick} classname="bg-primary text-white rounded px-5 py-2" />
+        <Button
+          label="sewa"
+          onClick={HandleSewa}
+          classname="bg-primary text-white rounded px-5 py-2"
+        />
       </div>
     </div>
   );
