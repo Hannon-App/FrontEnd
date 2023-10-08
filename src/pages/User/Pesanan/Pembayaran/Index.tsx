@@ -6,21 +6,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../../../components/User/Bottom";
 import LayoutUser from "../../../../components/User/LayoutUser";
 import Popup from "../../../../components/User/PopUp";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const FormDataForm: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [Pembayaran, SetPembayaran] = useState<boolean>(false);
   const [item, setItem] = useState<any>({});
-  const { id } = useParams<{ id: string }>();
+  const idFromCookie = Cookies.get("id");
   const { Id } = useParams<{ Id: string }>();
 
-  const token = Cookies.get("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4");
+  const token = Cookies.get(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4"
+  );
   const productName = localStorage.getItem("productName");
   const totalHargaSewa = localStorage.getItem("rentPrice");
   const jumlahSewa = localStorage.getItem("jumlahSewa");
-  const [formData, setFormData] = useState({
+  const [formData,] = useState({
     start_date: "2023-10-10 00:00:00",
     end_date: "2023-10-15 00:00:00",
     status: "pending",
@@ -38,7 +40,6 @@ const FormDataForm: React.FC = () => {
 
   const handleConfirm = async () => {
     try {
-      // Ganti 'URL_API_ANDA' dengan URL API yang sesuai
       const url = "https://hannonapp.site/rent";
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4"; // Ganti dengan token Anda
@@ -57,13 +58,41 @@ const FormDataForm: React.FC = () => {
       console.error("Gagal mengirim data:", error);
     }
   };
+  const getData = () => {
+    console.log("Nilai id sebelum permintaan GET:", idFromCookie);
+    axios
+      .get(`https://hannonapp.site/rent/18`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log("Data yang diterima dari API:", res?.data);
+        setItem(res?.data?.data || {});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, [idFromCookie]);
+
+  const handlePaymentAndGetData = async () => {
+    try {
+      // Jalankan kedua fungsi secara paralel menggunakan Promise.all
+      await Promise.all([handleConfirm(), getData()]);
+    } catch (error) {
+      console.error("Gagal mengirim data:", error);
+    }
+  };
 
   const HandleInvoice = async () => {
     try {
-      // Ganti 'URL_API_ANDA' dengan URL API yang sesuai
       const url = `https://hannonapp.site/rentpayment/${Id}`;
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4"; // Ganti dengan token Anda
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4";
 
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -83,34 +112,15 @@ const FormDataForm: React.FC = () => {
     getData();
   }, [Id]);
 
-  const getData = () => {
-    axios
-      .get(`https://hannonapp.site/rent/20`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setItem(res?.data?.data || {});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleInvoice = () => {
+   
+    if (item.payment_link) {
+      window.open(item.payment_link, "_blank"); // Membuka link pembayaran dalam tab baru
+    } else {
+      console.error("Tidak ada URL pembayaran yang tersedia.");
+    }
   };
-  useEffect(() => {
-    getData();
-  }, [id]);
 
-
-  const HandleInvoicee = () => {
-    navigate("/user/addimportantdata");
-  };
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
 
   return (
     <section>
@@ -198,7 +208,7 @@ const FormDataForm: React.FC = () => {
             <Button
               label="Bayar"
               classname="bg-primary text-white w-full rounded-lg py-2 px-5"
-              onClick={handleConfirm}
+              onClick={handlePaymentAndGetData}
             />
           </div>
         </div>
@@ -210,7 +220,9 @@ const FormDataForm: React.FC = () => {
             <div className="mt-8">
               <div className="mb-1">Biaya Sewa Tenda: {item.name}</div>
               <div className="mb-1">Biaya Admin: Rp 100,000</div>
-              <div className="font-semibold">Total Bayar: {item.total_price}</div>
+              <div className="font-semibold">
+                Total Bayar: {item.total_price}
+              </div>
             </div>
             <hr className="my-2" />
             <div>
@@ -227,13 +239,21 @@ const FormDataForm: React.FC = () => {
               <div className="text-center text-[24px] font-semibold">
                 Pilih Metode Bayar
               </div>
-              <div className="font-semibold">Total Bayar: {item.status}</div>
+              <div className="font-semibold">
+                Total Bayar: sendit
+                <button
+                  className="bg-primary text-white rounded-lg px-3 ml-2"
+                  onClick={HandleInvoice}
+                >
+                  Konfirmasi
+                </button>
+              </div>
             </div>
             <div className="mt-8">
               <Button
                 label="Bayar"
                 classname="bg-primary text-white w-full rounded-lg py-2 px-5   "
-                onClick={HandleInvoicee}
+                onClick={handleInvoice}
               />
             </div>
           </div>
