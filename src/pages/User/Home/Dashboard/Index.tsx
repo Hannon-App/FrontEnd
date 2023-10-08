@@ -47,18 +47,19 @@ const UserDashboard = () => {
               />
             </div>
 
-            <div className="h-max grid grid-col justify-center gap-x-5 gap-y-5 my-14">
+            <div className="h-max grid grid-col justify-center gap-x-5 gap-y-5 my-14 transition-transform">
               {data.map((item) => (
                 <Link to={`/item-user/${item.id}`} key={item.id}>
                   <CardUser
                     key={item.id}
                     title={item.name}
-                    width="1100px"
+                    width="800px"
                     height="200px"
                     storeName={item.name}
                     storeAddress={item.address}
                     storeDeskripsi={item.phone}
                     storeImage={item.images}
+                    className="hover:scale-105"
                   >
                     <p>Deskripsi toko atau konten tambahan lainnya.</p>
                   </CardUser>
