@@ -22,7 +22,13 @@ const FormDataForm: React.FC = () => {
   const productName = localStorage.getItem("productName");
   const totalHargaSewa = localStorage.getItem("rentPrice");
   const jumlahSewa = localStorage.getItem("jumlahSewa");
-  const [formData] = useState({});
+  const [formData,] = useState({
+    start_date: "2023-10-10 00:00:00",
+    end_date: "2023-10-15 00:00:00",
+    status: "pending",
+    total_price: 200000,
+    discount: 1000,
+  });
 
   const handleStartDateChange = (date: Date | null) => {
     setStartDate(date);
@@ -43,16 +49,7 @@ const FormDataForm: React.FC = () => {
         "Content-Type": "application/json",
       };
 
-      const dataToSend = {
-        start_date: startDate ? startDate.toISOString() : "", // Menggunakan ISO string jika startDate tersedia
-        end_date: endDate ? endDate.toISOString() : "", // Menggunakan ISO string jika endDate tersedia
-        status: "pending", // Ganti dengan status yang sesuai dengan kebutuhan Anda
-        total_price: totalHargaSewa, // Gunakan nilai totalHargaSewa dari localStorage
-        discount: jumlahSewa, // Gunakan nilai jumlahSewa dari localStorage
-        productName: productName, // Gunakan nilai productName dari localStorage
-        // ... tambahkan field lain yang dibutuhkan
-      };
-      const response = await axios.post(url, dataToSend, { headers });
+      const response = await axios.post(url, formData, { headers });
       console.log("Berhasil mengirim data:", response.data);
 
       // Set Pembayaran menjadi true untuk menampilkan popup
@@ -64,7 +61,7 @@ const FormDataForm: React.FC = () => {
   const getData = () => {
     console.log("Nilai id sebelum permintaan GET:", idFromCookie);
     axios
-      .get(`https://hannonapp.site/rent/23`, {
+      .get(`https://hannonapp.site/rent/18`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -95,7 +92,7 @@ const FormDataForm: React.FC = () => {
     try {
       const url = `https://hannonapp.site/rentpayment/${Id}`;
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjE4MTMsImlkIjoyLCJyb2xlIjoidXNlciJ9.LSNG8l8Vam0jUHsiBHAT5EXIgLkkb3LyYbl1XqY1hys";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4";
 
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -116,12 +113,14 @@ const FormDataForm: React.FC = () => {
   }, [Id]);
 
   const handleInvoice = () => {
+   
     if (item.payment_link) {
       window.open(item.payment_link, "_blank"); // Membuka link pembayaran dalam tab baru
     } else {
       console.error("Tidak ada URL pembayaran yang tersedia.");
     }
   };
+
 
   return (
     <section>
@@ -168,11 +167,16 @@ const FormDataForm: React.FC = () => {
                 </td>
                 <td className="border px-4 py-2">
                   <div>
-                    <input
-                      type="text"
-                      placeholder="Start Date"
-                      value={startDate ? startDate.toISOString() : ""}
-                      onChange={(e) => setStartDate(new Date(e.target.value))}
+                    <DatePicker
+                      selected={startDate}
+                      onChange={handleStartDateChange}
+                      showTimeSelect
+                      dateFormat="yyyy-MM-dd HH:mm:ss"
+                      timeFormat="HH:mm:ss"
+                      timeIntervals={1}
+                      timeCaption="Waktu"
+                      placeholderText="Pilih Tanggal dan Waktu"
+                      className="w-full p-2 border rounded"
                     />
                   </div>
                 </td>
@@ -183,11 +187,16 @@ const FormDataForm: React.FC = () => {
                 </td>
                 <td className="border px-4 py-2">
                   <div>
-                    <input
-                      type="text"
-                      placeholder="End Date"
-                      value={endDate ? endDate.toISOString() : ""}
-                      onChange={(e) => setEndDate(new Date(e.target.value))}
+                    <DatePicker
+                      selected={endDate}
+                      onChange={handleEndDateChange}
+                      showTimeSelect
+                      dateFormat="yyyy-MM-dd HH:mm:ss"
+                      timeFormat="HH:mm:ss"
+                      timeIntervals={1}
+                      timeCaption="Waktu"
+                      placeholderText="Pilih Tanggal dan Waktu"
+                      className="w-full p-2 border rounded"
                     />
                   </div>
                 </td>
