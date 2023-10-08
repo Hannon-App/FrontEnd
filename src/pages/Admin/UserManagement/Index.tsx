@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import Cookies from "js-cookie";
 import axios from 'axios';
-import Button from '../../../components/Button';
 
 import AdminLayout from "../../../components/Layout/Admin/AdminLayout"
 
 const UserManagement = () => {
-    const [name, setName] = useState('');
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
     const token = Cookies.get("token");
 
-    const handleEdit = (id: number) => {
-        navigate(`/EditUser/${id}`, {
-            state: {
-                id: id,
-            }
-        });
-    }
+    // const handleEdit = (id: number) => {
+    //     navigate(`/EditUser/${id}`, {
+    //         state: {
+    //             id: id,
+    //         }
+    //     });
+    // }
     const middleware = () => {
         if (token === undefined) {
             Swal.fire({
@@ -53,10 +51,6 @@ const UserManagement = () => {
     };
     useEffect(() => {
         middleware();
-        const savedName = Cookies.get('name');
-        if (savedName) {
-            setName(savedName);
-        }
         getAllUser();
     }, [token]);
 
