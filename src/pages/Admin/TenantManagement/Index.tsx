@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 import AdminLayout from "../../../components/Layout/Admin/AdminLayout";
 
 const TenantManagement = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [tennant, setTennant] = useState<[]>([]);
-    const handleEdit = (id: number) => {
-        navigate(`/EditTenant/${id}`, {
-            state: {
-                id: id,
-            }
-        });
-    };
+    // const handleEdit = (id: number) => {
+    //     navigate(`/EditTenant/${id}`, {
+    //         state: {
+    //             id: id,
+    //         }
+    //     });
+    // };
     const handleDelete = (id: number) => {
         Swal.fire({
             title: 'Are You Sure For Delete?',
@@ -67,9 +67,9 @@ const TenantManagement = () => {
     useEffect(() => {
         getAllTenant();
     });
-    const handleAddTenant = () => {
-        navigate('/AddTenant');
-    }
+    // const handleAddTenant = () => {
+    //     navigate('/AddTenant');
+    // }
     return (
         <AdminLayout>
             <div className="bg-slate-300 h-screen p-5">
@@ -102,8 +102,8 @@ const TenantManagement = () => {
                                         <td className="p-4 w-auto border text-center">{item?.open_time} - {item?.close_time}</td>
                                         <td className="p-4 w-auto border"><img src={item?.images} alt="tenant-logo" className='w-20' /></td>
                                         <td className='flex justify-center p-3 border gap-3 w-full'>
-                                            <button className='bg-warning px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={() => handleEdit(item?.id)}>Edit</button>
-                                            <button className='bg-danger px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={() => handleEdit(item?.id)}>Edit</button>
+                                            <button className='bg-warning px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' disabled>Edit</button>
+                                            <button className='bg-danger px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' disabled>Edit</button>
                                         </td>
                                     </tr>
                                 ))}

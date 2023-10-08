@@ -93,8 +93,8 @@ const UserManagement = () => {
                                         <td className="p-4 w-auto border text-center"><img src={item?.profil_photo} alt="profil_photo" className='w-20'/></td>
                                         <td className="p-4 w-auto border text-center"><img src={item?.image} alt="ktp_photo" className='w-20'/></td>
                                         <td className='flex justify-center h-full p-3 border gap-3'>
-                                            <button className='bg-warning px-5 py-3 hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' >Edit</button>
-                                            <button className='bg-danger px-5 py-3 hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' >Delete</button>
+                                            <button className='bg-warning px-5 py-3 hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' disabled>Edit</button>
+                                            <button className='bg-danger px-5 py-3 hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' disabled>Delete</button>
                                         </td>
                                     </tr>
                                 ))}

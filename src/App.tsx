@@ -3,14 +3,14 @@
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Awal from "./pages/Awal";
+// import Awal from "./pages/Awal";
 import AdminDashboard from "./pages/Admin/Index";
 import RegisterUser from "./pages/Auth/RegisterUser";
 import RegisterTenant from "./pages/Auth/RegisterTenant";
 import AddTenant from "./pages/Admin/TenantManagement/AddTenant";
 import Layout from "./components/Layout";
 
-import EditUser from "./pages/Admin/UserManagement/EditUser";
+import EditTenant from "./pages/Admin/TenantManagement/EditTenant";
 import LoginAdmin from "./pages/Auth/LoginAdmin";
 import LoginTenant from "./pages/Auth/LoginTenant";
 import TenantArchive from "./pages/Tenant/TenantArchive/TenantArchive";
@@ -44,7 +44,7 @@ const App = () => {
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
           <Route path="/UserManagement" element={<UserManagement />} />
-          <Route path="/EditUser/:id" element={<EditUser />} />
+          <Route path="/EditTenant/:id" element={<EditTenant />} />
           <Route path="/AddTenant" element={<AddTenant />} />
           
           <Route path="/RegisterUser" element={<RegisterUser />} />

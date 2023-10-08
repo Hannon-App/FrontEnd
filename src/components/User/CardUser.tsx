@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, CSSProperties } from 'react';
+import { FC, ReactNode, CSSProperties } from 'react';
 
 interface CardProps {
   title?: string;
