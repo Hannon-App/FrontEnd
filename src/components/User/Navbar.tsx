@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-import Button from "./Bottom";
-import { useNavigate } from "react-router";
-import Logo from "../../assets/Hannon.svg"
-=======
 // import React from "react";
 import Button from "./Bottom";
 import { useNavigate } from "react-router";
 
 import Logo from "../../assets/Hannon.svg";
 
->>>>>>> f4a6673eb70f640f0ced4fad240568fbcd7b1da3
 const Navbar = () => {
   const navigate = useNavigate();
   
@@ -18,19 +12,11 @@ const Navbar = () => {
   };
   return (
     <div className="flex flex-row w-full justify-between px-8 h-16 place-items-center">
-<<<<<<< HEAD
       <div className="flex flex-rows-2 place-items-center ml-16">
         <img src={Logo} style={{ width: "4rem" }} alt="" />
         <div className="flex flex-col ml-9 ">
           <div className="text-[18px] font-semibold">Welcome to Hannon App</div>
        
-=======
-      <div className="flex flex-rows-2 place-items-center">
-        <img src={Logo} style={{ width: "7rem" }} alt="" />
-        <div className="flex flex-col ml-9 ">
-          <div className="text-[18px] font-semibold">Welcome to Hannon App</div>
-          <div className="text-[11px]">It's Tuesday, 28 September</div>
->>>>>>> f4a6673eb70f640f0ced4fad240568fbcd7b1da3
         </div>
       </div>
 
