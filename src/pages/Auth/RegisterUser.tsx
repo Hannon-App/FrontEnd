@@ -59,7 +59,7 @@ const RegisterUser = () => {
                     text: `Selamat Akun anda berhasil dibuat! Silahkan Login`,
                     confirmButtonText: "OK",
                 }).then(() => {
-                    navigate("/LoginAdmin");
+                    navigate("/");
                 });
             })
             .catch((error) => {

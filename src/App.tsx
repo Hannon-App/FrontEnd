@@ -10,6 +10,7 @@ import RegisterTenant from "./pages/Auth/RegisterTenant";
 import AddTenant from "./pages/Admin/TenantManagement/AddTenant";
 import Layout from "./components/Layout";
 
+import EditUser from "./pages/Admin/UserManagement/EditUser";
 import LoginAdmin from "./pages/Auth/LoginAdmin";
 import LoginTenant from "./pages/Auth/LoginTenant";
 import TenantArchive from "./pages/Tenant/TenantArchive/TenantArchive";
@@ -36,13 +37,14 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Awal/>} />
+          <Route path="/" element={<UserDashboard/>} />
           <Route path="/LoginTenant" element={<LoginTenant />} />
           <Route path="/LoginAdmin" element={<LoginAdmin />} />
 
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
           <Route path="/TenantManagement" element={<TenantManagement />} />
           <Route path="/UserManagement" element={<UserManagement />} />
+          <Route path="/EditUser/:id" element={<EditUser />} />
           <Route path="/AddTenant" element={<AddTenant />} />
           
           <Route path="/RegisterUser" element={<RegisterUser />} />

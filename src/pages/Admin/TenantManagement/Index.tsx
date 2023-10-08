@@ -75,7 +75,7 @@ const TenantManagement = () => {
             <div className="bg-slate-300 h-screen p-5">
                 <main>
                     <div className='flex justify-start p-3'>
-                        <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">Team management</h2>
+                        <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">Tenant management</h2>
                     </div>
                     <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                         <table className="min-w-full table-auto bg-white shadow">
