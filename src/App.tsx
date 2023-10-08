@@ -30,7 +30,6 @@ import Membership from "./pages/User/Membership/Index";
 import LoginUser from "./pages/User/Auth/Login/Index";
 import TentangKami from "./pages/User/TentangKami/Index";
 
-
 const App = () => {
   axios.defaults.baseURL = "https://hannonapp.site/";
   return (
@@ -56,7 +55,6 @@ const App = () => {
           <Route path="/detail-pesanan/:id" element={<Detail />} />
           <Route path="/pesanan-user" element={<Pesanan />} />
           <Route path="/pembayaran-user" element={<Pembayaran />} />
-          
           <Route path="/cardshop-user" element={<CardShop />} />
           <Route path="/membership-user" element={<Membership />} />
           <Route path="/tentang-kami" element={<TentangKami />} />

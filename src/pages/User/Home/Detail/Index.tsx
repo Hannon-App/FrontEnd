@@ -10,8 +10,8 @@ const Detail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const token = Cookie.get("token");
-  const [jumlahSewa, setJumlahSewa] = useState< any>(1);
-  const [setTotalHargaSewa] = useState<any>(0);
+  const [jumlahSewa, setJumlahSewa] = useState<any>(1);
+  const [totalHargaSewa, setTotalHargaSewa] = useState<any>(0);
 
   const getData = () => {
     axios
@@ -27,7 +27,7 @@ const Detail = () => {
         console.log(err);
       });
   };
-
+  
   const tambahJumlahSewa = () => {
     if (jumlahSewa < item.stock) {
       const hargaSewaBaru = (jumlahSewa + 1) * item.rent_price;
@@ -43,7 +43,7 @@ const Detail = () => {
       setTotalHargaSewa(hargaSewaBaru);
     }
   };
-
+  
   useEffect(() => {
     getData();
   }, [id]);
@@ -51,7 +51,9 @@ const Detail = () => {
   const handleSewa = () => {
     localStorage.setItem("productName", item.name);
     localStorage.setItem("rentPrice", item.rent_price);
-    localStorage.setItem("jumlahSewa", jumlahSewa);
+    localStorage.setItem("jumlahSewa", totalHargaSewa);
+    localStorage.setItem("jumlahSewadua", jumlahSewa);
+    
     navigate("/pembayaran-user");
   };
 
