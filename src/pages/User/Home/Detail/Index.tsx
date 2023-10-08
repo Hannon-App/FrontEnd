@@ -10,8 +10,8 @@ const Detail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const token = Cookie.get("token");
-  const [jumlahSewa, setJumlahSewa] = useState<number>(1);
-  const [totalHargaSewa, setTotalHargaSewa] = useState<number>(0);
+  const [jumlahSewa, setJumlahSewa] = useState< any>(1);
+  const [setTotalHargaSewa] = useState<any>(0);
 
   const getData = () => {
     axios

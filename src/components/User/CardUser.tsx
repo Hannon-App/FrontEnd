@@ -1,8 +1,8 @@
-import React, { FC, ReactNode, CSSProperties, useState } from "react";
+import  { FC, ReactNode, CSSProperties, useState } from "react";
 
 interface CardProps {
   title?: string;
-  content?: ReactNode;
+  children?: ReactNode;
   className?: string;
   style?: CSSProperties;
   storeName?: string;
@@ -15,7 +15,6 @@ interface CardProps {
 
 const CardUser: FC<CardProps> = ({
   title,
-  content,
   className,
   style,
   storeAddress,
@@ -30,8 +29,8 @@ const CardUser: FC<CardProps> = ({
     width,
     height,
     ...style,
-    backgroundColor: isHovered ? "orange" : "transparent", // Warna latar belakang saat hover
-    transition: "background-color 0.3s ease-in-out", // Transisi warna latar belakang
+    backgroundColor: isHovered ? "orange" : "transparent", 
+    transition: "background-color 0.3s ease-in-out", 
   };
 
   return (
@@ -39,10 +38,10 @@ const CardUser: FC<CardProps> = ({
       className={`bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-lg shadow-lg p-4 flex justify-start ${className}`}
       style={cardStyles}
       onMouseEnter={() => {
-        setIsHovered(true); // Set status hover menjadi true saat masuk
+        setIsHovered(true); 
       }}
       onMouseLeave={() => {
-        setIsHovered(false); // Set status hover menjadi false saat keluar
+        setIsHovered(false); 
       }}
     >
       <div className="flex justify-center items-center">
@@ -67,7 +66,7 @@ const CardUser: FC<CardProps> = ({
               Nomor Telepon: {storeDeskripsi}
             </p>
           )}
-          {content}
+         
         </div>
       </div>
     </div>

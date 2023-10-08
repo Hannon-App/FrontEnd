@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "./Bottom";
 import { useNavigate } from "react-router";
 import Logo from "../../assets/Hannon.svg"

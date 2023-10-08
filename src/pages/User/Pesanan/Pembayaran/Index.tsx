@@ -61,7 +61,7 @@ const FormDataForm: React.FC = () => {
   const getData = () => {
     console.log("Nilai id sebelum permintaan GET:", idFromCookie);
     axios
-      .get(`https://hannonapp.site/rent/18`, {
+      .get(`https://hannonapp.site/rent/23`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -92,7 +92,7 @@ const FormDataForm: React.FC = () => {
     try {
       const url = `https://hannonapp.site/rentpayment/${Id}`;
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjE4MTMsImlkIjoyLCJyb2xlIjoidXNlciJ9.LSNG8l8Vam0jUHsiBHAT5EXIgLkkb3LyYbl1XqY1hys";
 
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -120,7 +120,6 @@ const FormDataForm: React.FC = () => {
       console.error("Tidak ada URL pembayaran yang tersedia.");
     }
   };
-
 
   return (
     <section>

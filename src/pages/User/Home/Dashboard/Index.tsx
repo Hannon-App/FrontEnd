@@ -46,7 +46,6 @@ const UserDashboard = () => {
                 classname="flex bg-gray-300 my-11 px-5 py-2 rounded items-end"
               />
             </div>
-
             <div className="h-max grid grid-col justify-center gap-x-5 gap-y-5 my-14 transition-transform">
               {data.map((item) => (
                 <Link to={`/item-user/${item.id}`} key={item.id}>

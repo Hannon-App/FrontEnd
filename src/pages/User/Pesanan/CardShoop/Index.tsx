@@ -1,20 +1,19 @@
-import React, { useState,  } from "react";
+import  { useState,  } from "react";
 import LayoutUser from "../../../../components/User/LayoutUser";
 import Button from "../../../../components/User/Bottom";
 import { useNavigate } from "react-router-dom";
 
 const CardShop = () => {
-  // Objek yang menyimpan kuantitas masing-masing item
+ 
   const navigate = useNavigate();
   const [itemQuantities, setItemQuantities] = useState<{
     [itemId: number]: number;
   }>({
-    1: 1, // Item 1 memiliki kuantitas awal 1
-    2: 1, // Item 2 memiliki kuantitas awal 1
-    // Tambahkan item lain jika diperlukan
+    1: 1, 
+    2: 1, 
+    
   });
 
-  // Fungsi untuk menambah kuantitas item
   const incrementQuantity = (itemId: number) => {
     setItemQuantities({
       ...itemQuantities,
@@ -22,7 +21,7 @@ const CardShop = () => {
     });
   };
 
-  // Fungsi untuk mengurangi kuantitas item
+
   const decrementQuantity = (itemId: number ) => {
     if (itemQuantities[itemId] > 1) {
       setItemQuantities({
@@ -32,7 +31,6 @@ const CardShop = () => {
     }
   };
 
-  // Data dummy untuk barang-barang dalam keranjang belanja
   const cartItems = [
     {
       id: 1,
@@ -50,22 +48,22 @@ const CardShop = () => {
       imageSrc:
         "https://imgs.search.brave.com/udmDGOGRJTYO6lmJ0ADA03YoW4CdO6jPKGzXWvx1XRI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzY4LzU1LzYw/LzM2MF9GXzI2ODU1/NjAxMl9jMVdCYUtG/TjVyalJ4UjJleVYz/M3puSzRxblllS1pq/bS5qcGc",
     },
-    // Tambahkan barang-barang lain di sini jika diperlukan
+    
   ];
 
-  const subtotal = Object.keys(itemQuantities).reduce((total, itemId) => {
-    const item = cartItems.find((cartItem) => cartItem.id === parseInt(itemId));
-    return total + item.price * itemQuantities[itemId];
-  }, 0);
+  // const subtotal = Object.keys(itemQuantities).reduce((total, itemId) => {
+  //   const item = cartItems.find((cartItem) => cartItem.id === parseInt(itemId));
+  //   return total + item.price * itemQuantities[itemId];
+  // }, 0);
 
-  // Menghitung diskon (20%)
-  const discount = subtotal * 0.2;
+  // // Menghitung diskon (20%)
+  // const discount = subtotal * 0.2;
 
-  // Biaya Admin
-  const adminFee = 29348923;
+  // // Biaya Admin
+  // const adminFee = 29348923;
 
-  // Menghitung total
-  const total = subtotal - discount + adminFee;
+  // // Menghitung total
+  // const total = subtotal - discount + adminFee;
 
   const handlecheckout = () => {
     navigate('/pembayaran-user');
@@ -148,20 +146,20 @@ const CardShop = () => {
               <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
               <div className="order-summary-item flex justify-between">
                 <p>Subtotal:</p>
-                <p className="item-end">{subtotal}</p>
+                {/* <p className="item-end">{subtotal}</p> */}
               </div>
               <div className="order-summary-item flex justify-between">
                 <p>Discount (20%):</p>
-                <p className="item-end">{discount}</p>
+                {/* <p className="item-end">{discount}</p> */}
               </div>
               <div className="order-summary-item flex justify-between">
                 <p>Biaya Admin:</p>
-                <p className="item-end">{adminFee}</p>
+                {/* <p className="item-end">{adminFee}</p> */}
               </div>
               <hr className="my-2" />
               <div className="order-summary-item flex justify-between">
                 <p>Total:</p>
-                <p className="item-end">{total}</p>
+                {/* <p className="item-end">{total}</p> */}
               </div>
               <Button
               label="Go to Checkout"
