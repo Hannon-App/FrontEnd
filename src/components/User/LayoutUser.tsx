@@ -1,5 +1,5 @@
 import Navbar from './Navbar'
-import { Outlet } from 'react-router-dom'
+// import { Outlet } from 'react-router-dom'
 import Sidebar2 from './Sidebar2'
 import { ReactNode } from 'react';
 
