@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import  { FC, ReactNode, CSSProperties, useState } from "react";
+=======
+import { FC, ReactNode, CSSProperties } from 'react';
+>>>>>>> f4a6673eb70f640f0ced4fad240568fbcd7b1da3
 
 interface CardProps {
   title?: string;

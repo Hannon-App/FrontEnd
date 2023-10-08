@@ -95,7 +95,11 @@ const LoginUser = () => {
                                     Sign in
                                 </button>
                             </div>
+                            <div className="flex justify-center mt-7">
+                                <h2 className='font-medium text-blue-600 hover:underline'><a href="/RegisterUser">or, signup</a></h2>
+                            </div>
                         </div>
+
 
                     </div>
                 </div>

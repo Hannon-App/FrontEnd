@@ -1,4 +1,4 @@
-import { faGauge, faUsersRectangle } from "@fortawesome/free-solid-svg-icons";
+import { faGauge, faUsersRectangle, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -16,12 +16,17 @@ const AdminSidebar = () => {
       url: <FontAwesomeIcon icon={faUsersRectangle} />,
       name: "Tennant Management",
     },
+    {
+      to: "/UserManagement",
+      url: <FontAwesomeIcon icon={faUsers} />,
+      name: "User Management",
+    },
     
   ];
   return (
     <>
       <div className="w-1/6 space-y-4 h-screen fixed top-0 left-0 overflow-y-auto">
-        <div className="px-12 py-5 flex gap-2 items-center">
+        <div className="px-12 py-5 flex gap-2 items-center justify-center">
           <img src={Logo} style={{ width: "7rem" }} alt="logo" />
         </div>
 

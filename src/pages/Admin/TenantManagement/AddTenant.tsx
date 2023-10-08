@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 
 import AdminLayout from "../../../components/Layout/Admin/AdminLayout";
-import Button from "../../../components/Button";
 
 const AddTenant = () => {
     // const [tenant, setTenant] = useState();
@@ -30,10 +29,10 @@ const AddTenant = () => {
     }, [token]);
     return (
         <AdminLayout>
-            <div className="bg-slate-300 h-screen p-5">
+            <div className="bg-slate-300 min-h-full p-5">
                 <main>
-                    <div className='flex justify-center'>
-                        <Button textBtn="Back" color="bg-bgBtn" onClick={() => navigate(-1)} />
+                    <div className='flex justify-start'>
+                        <button className='bg-info px-10 py-3  hover:shadow-lg hover:text-opacity-90 font-semibold text-white rounded flex justify-center items-center' onClick={() => navigate(-1)}>Add Tenant</button>
                     </div>
                     <div className='px-10 py-8 max-w-full bg-white rounded-lg mt-5'>
                         <form action="">
@@ -41,13 +40,30 @@ const AddTenant = () => {
                                 <div className='w-1/2'>
                                     <div className='mb-4'>
                                         <label
-                                            htmlFor="nama_lengkap"
+                                            htmlFor="name"
                                             className='block text-gray-700 font-semibold mb-2'
                                         >Nama Lengkap</label>
                                         <input
                                             type="text"
-                                            id='nama_lengkap'
-                                            name='nama_lengkap'
+                                            id='name'
+                                            name='name'
+                                            placeholder='Input Nama Lengkap'
+                                            // value={formData.nama_lengkap}
+                                            // onChange={handleChange}
+                                            required
+                                            autoComplete='off'
+                                            className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
+                                        />
+                                    </div>
+                                    <div className='mb-4'>
+                                        <label
+                                            htmlFor="address"
+                                            className='block text-gray-700 font-semibold mb-2'
+                                        >Alamat</label>
+                                        <input
+                                            type="text"
+                                            id='address'
+                                            name='Alamat'
                                             placeholder='Input Nama Lengkap'
                                             // value={formData.nama_lengkap}
                                             // onChange={handleChange}
@@ -75,6 +91,23 @@ const AddTenant = () => {
                                     </div>
                                     <div className='mb-4'>
                                         <label
+                                            htmlFor="phone"
+                                            className='block text-gray-700 font-semibold mb-2'
+                                        >No. Handphone</label>
+                                        <input
+                                            type="text"
+                                            id='phone'
+                                            name='phone'
+                                            placeholder='Input Nama Lengkap'
+                                            // value={formData.nama_lengkap}
+                                            // onChange={handleChange}
+                                            required
+                                            autoComplete='off'
+                                            className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
+                                        />
+                                    </div>
+                                    {/* <div className='mb-4'>
+                                        <label
                                             htmlFor="password"
                                             className='block text-gray-700 font-semibold mb-2'
                                         >Password</label>
@@ -87,7 +120,7 @@ const AddTenant = () => {
                                             // onChange={handleChange}
                                             className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                         />
-                                    </div>
+                                    </div> */}
                                     <div className='mb-4'>
                                         <label
                                             htmlFor="address"
@@ -119,14 +152,30 @@ const AddTenant = () => {
                                     </div>
                                     <div className='mb-4'>
                                         <label
-                                            htmlFor="profil_photo"
+                                            htmlFor="address"
                                             className='block text-gray-700 font-semibold mb-2'
-                                        >profil_photo</label>
+                                        >Jam Buka</label>
                                         <input
-                                            type="file"
-                                            id='profil_photo'
-                                            name='profil_photo'
-                                            // value={formData.profil_photo}
+                                            type="text"
+                                            id='address'
+                                            name='address'
+                                            placeholder='Input Nomor HP'
+                                            // value={formData.address}
+                                            // onChange={handleChange}
+                                            className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
+                                        />
+                                    </div>
+                                    <div className='mb-4'>
+                                        <label
+                                            htmlFor="address"
+                                            className='block text-gray-700 font-semibold mb-2'
+                                        >Jam Tutup</label>
+                                        <input
+                                            type="text"
+                                            id='address'
+                                            name='address'
+                                            placeholder='Input Nomor HP'
+                                            // value={formData.address}
                                             // onChange={handleChange}
                                             className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                         />

@@ -59,7 +59,7 @@ const RegisterUser = () => {
                     text: `Selamat Akun anda berhasil dibuat! Silahkan Login`,
                     confirmButtonText: "OK",
                 }).then(() => {
-                    navigate("/LoginAdmin");
+                    navigate("/");
                 });
             })
             .catch((error) => {
@@ -175,7 +175,9 @@ const RegisterUser = () => {
                                     </button>
                                 </div>
                             </form>
-
+                            <div className="flex justify-center mt-7">
+                                <h2 className='font-medium text-blue-600 hover:underline'><a href="/login-user">Login</a></h2>
+                            </div>
                         </div>
                     </div>
                 </div>

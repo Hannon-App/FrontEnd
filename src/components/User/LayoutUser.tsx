@@ -1,4 +1,8 @@
 import Navbar from './Navbar'
+<<<<<<< HEAD
+=======
+// import { Outlet } from 'react-router-dom'
+>>>>>>> f4a6673eb70f640f0ced4fad240568fbcd7b1da3
 import Sidebar2 from './Sidebar2'
 import { ReactNode } from 'react';
 
