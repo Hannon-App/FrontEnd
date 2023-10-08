@@ -4,7 +4,11 @@ import { useState } from "react";
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+<<<<<<< HEAD
+  const [activePage, ] = useState<string>(""); 
+=======
   const [activePage] = useState<string>(""); 
+>>>>>>> f4a6673eb70f640f0ced4fad240568fbcd7b1da3
   const menuClosedClass = "translate-x-[-100%]"; 
   const menuOpenClass = "translate-x-0"; 
 
