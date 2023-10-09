@@ -52,12 +52,12 @@ const Item = () => {
                 data?.map((item: any) => {
                   return (
                     <Card
-                      key={item.ID}
-                      id={item?.ID}
-                      title={item?.Name}
-                      image={item?.Image}
-                      price={item?.Rent_Price}
-                      category={item?.Description_Item}
+                      key={item.id}
+                      id={item?.id}
+                      title={item?.name}
+                      image={item?.image}
+                      price={item?.rent_price}
+                      category={item?.description_item}
                     />
                   );
                 })}
@@ -65,15 +65,15 @@ const Item = () => {
             <p className="font-semibold text-2xl my-11 ml-4">Item</p>
             <div className="h-max mx-5 grid grid-cols-3 gap-x-5 gap-y-5  my-14">
               {data &&
-                data?.map((item: any, index: any) => {
+                data?.map((item: any) => {
                   return (
                     <Card
-                      key={index}
-                      id={item?.ID}
-                      title={item?.Name}
-                      image={item?.Image}
-                      price={item?.Rent_Price}
-                      category={item?.Description_Item}
+                    key={item.id}
+                    id={item?.id}
+                    title={item?.name}
+                    image={item?.image}
+                    price={item?.rent_Price}
+                    category={item?.description_item}
                     />
                   );
                 })}
