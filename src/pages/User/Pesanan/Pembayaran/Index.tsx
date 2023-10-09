@@ -8,7 +8,7 @@ import LayoutUser from "../../../../components/User/LayoutUser";
 import Popup from "../../../../components/User/PopUp";
 import { useNavigate } from "react-router-dom";
 
-let currentId = 343;
+let currentId = 340;
 
 function generateNewId() {
   const newId = currentId;
@@ -43,10 +43,10 @@ const FormDataForm: React.FC = () => {
 
     // Validasi agar hanya angka yang diterima
     if (name === "total_price" && isNaN(value)) {
-      return; // Jika nilai bukan angka, maka jangan lakukan perubahan
+      return; 
     }
 
-    // Mengubah nilai formData dengan mengonversi nilai total_price ke number
+
     setFormData({
       ...formData,
       [name]: name === "total_price" ? parseFloat(value) : value,

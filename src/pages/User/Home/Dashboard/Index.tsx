@@ -2,18 +2,27 @@ import LayoutUser from "../../../../components/User/LayoutUser";
 import InputSearch from "../../../../components/User/InputSearch";
 import CardUser from "../../../../components/User/CardUser";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../../components/User/Bottom";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState<any[]>([]);
 
   const token = Cookie.get("token");
+  const handleClick = (id: string) => {
+    navigate(`/item-user/${id}`,{
+      state: {
+        id: id,
+      }
+    });
+  }
   const getData = () => {
     axios
-      .get(`https://hannonapp.site/tenant`, {
+      .get(`tenant`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +57,7 @@ const UserDashboard = () => {
             </div>
             <div className="h-max grid grid-col justify-center gap-x-5 gap-y-5 my-14 transition-transform">
               {data.map((item) => (
-                <Link to={`/item-user/${item.id}`} key={item.id}>
+                <a onClick={() => handleClick(item?.id)} key={item.id}>
                   <CardUser
                     key={item.id}
                     title={item.name}
@@ -62,7 +71,7 @@ const UserDashboard = () => {
                   >
                     <p>Deskripsi toko atau konten tambahan lainnya.</p>
                   </CardUser>
-                </Link>
+                </a>
               ))}
             </div>
           </div>

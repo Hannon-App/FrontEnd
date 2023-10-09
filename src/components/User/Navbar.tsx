@@ -6,7 +6,7 @@ import Logo from "../../assets/Hannon.svg";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  
+
   const HandleLogOut = () => {
     Cookies.remove("token");
     Cookies.remove("name");
@@ -19,7 +19,6 @@ const Navbar = () => {
         <img src={Logo} style={{ width: "4rem" }} alt="" />
         <div className="flex flex-col ml-9 ">
           <div className="text-[18px] font-semibold">Welcome to Hannon App</div>
-       
         </div>
       </div>
 

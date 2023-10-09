@@ -5,16 +5,19 @@ import { useEffect, useState } from "react";
 import Button from "../../../../components/User/Bottom";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Item = () => {
+  const location = useLocation();
+
+  const id = location?.state?.id;
   const [data, setData] = useState<any[]>([]);
-  const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
 
   const token = Cookie.get("token");
   const getData = () => {
     axios
-      .get(`https://hannonapp.site/tenant/${id}/items`, {
+      .get(`tenant/${id}/items`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

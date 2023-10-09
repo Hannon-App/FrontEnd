@@ -51,7 +51,7 @@ const Card: FC<CardProps> = ({ id, title, image, price, category }) => {
         </div>
         <div>
           <p className="text-sm text-gray-700">{truncatedCategory}</p>
-          </div>
+        </div>
       </div>
       <div className="mt-4">
         <Button
