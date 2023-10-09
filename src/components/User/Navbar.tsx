@@ -8,7 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const HandleLogOut = () => {
-    navigate('/LoginTenant');
+    navigate('/login-user');
   };
   return (
     <div className="flex flex-row w-full justify-between px-8 h-16 place-items-center">

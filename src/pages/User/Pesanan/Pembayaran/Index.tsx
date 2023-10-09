@@ -1,48 +1,58 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import DatePicker from "react-datepicker";
+import Swal from "sweetalert2";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../../../components/User/Bottom";
 import LayoutUser from "../../../../components/User/LayoutUser";
 import Popup from "../../../../components/User/PopUp";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+
+let currentId = 1
+
+
+function generateNewId() {
+  const newId = currentId;
+  currentId++; 
+  return newId;
+}
 const FormDataForm: React.FC = () => {
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
   const [Pembayaran, SetPembayaran] = useState<boolean>(false);
   const [item, setItem] = useState<any>({});
   const idFromCookie = Cookies.get("id");
-  const { Id } = useParams<{ Id: string }>();
+  const [newId, setNewId] = useState<number | null>(null); 
+  const [jumlahHari, setJumlahHari] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const token = Cookies.get(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjgwNDQsImlkIjoyLCJyb2xlIjoidXNlciJ9.CBGuIdLvitgojL4pOmwHdtgMGOlgXhPv8k0eVaaUdxo"
   );
   const productName = localStorage.getItem("productName");
-  const totalHargaSewa = localStorage.getItem("rentPrice");
-  const jumlahSewa = localStorage.getItem("jumlahSewa");
-  const [formData,] = useState({
-    start_date: "2023-10-10 00:00:00",
-    end_date: "2023-10-15 00:00:00",
-    status: "pending",
-    total_price: 200000,
-    discount: 1000,
+  const HargaSewa = localStorage.getItem("rentPrice");
+  const jumlahSewa = localStorage.getItem("jumlahSewadua");
+  const totalHargaSewa = localStorage.getItem("jumlahSewa");
+  const [formData, setFormData] = useState({
+    start_date: "",
+    end_date: "",
+    status: "",
+    total_price: 0,
+    discount: 0,
   });
 
-  const handleStartDateChange = (date: Date | null) => {
-    setStartDate(date);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
-
-  const handleEndDateChange = (date: Date | null) => {
-    setEndDate(date);
-  };
-
+  
   const handleConfirm = async () => {
     try {
       const url = "https://hannonapp.site/rent";
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4"; // Ganti dengan token Anda
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjgwNDQsImlkIjoyLCJyb2xlIjoidXNlciJ9.CBGuIdLvitgojL4pOmwHdtgMGOlgXhPv8k0eVaaUdxo"; // Ganti dengan token Anda
 
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -54,14 +64,42 @@ const FormDataForm: React.FC = () => {
 
       // Set Pembayaran menjadi true untuk menampilkan popup
       SetPembayaran(true);
+      Swal.fire({
+        title: "Sukses!",
+        text: "Data telah berhasil dikirim ",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {      
+          getData();
+        }
+      });
+
+      const startDate = new Date(formData.start_date);
+      const endDate = new Date(formData.end_date);
+      const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+      const jumlahHari = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Set jumlahHari ke dalam state
+      setJumlahHari(jumlahHari);
+
+      const newGeneratedId = generateNewId();
+      setNewId(newGeneratedId);
     } catch (error) {
       console.error("Gagal mengirim data:", error);
+   
+      Swal.fire({
+        title: "Error!",
+        text: "Isi data dengan Benar.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
+
   const getData = () => {
-    console.log("Nilai id sebelum permintaan GET:", idFromCookie);
+    const newId = generateNewId();
+    console.log("Nilai id sebelum permintaan GET:", newId);
     axios
-      .get(`https://hannonapp.site/rent/18`, {
+      .get(`https://hannonapp.site/rent/${newId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -79,20 +117,12 @@ const FormDataForm: React.FC = () => {
     getData();
   }, [idFromCookie]);
 
-  const handlePaymentAndGetData = async () => {
-    try {
-      // Jalankan kedua fungsi secara paralel menggunakan Promise.all
-      await Promise.all([handleConfirm(), getData()]);
-    } catch (error) {
-      console.error("Gagal mengirim data:", error);
-    }
-  };
-
   const HandleInvoice = async () => {
     try {
-      const url = `https://hannonapp.site/rentpayment/${Id}`;
+      
+      const url = `https://hannonapp.site/rentpayment/11`;
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY3ODgyODYsImlkIjoyLCJyb2xlIjoidXNlciJ9.8B79z9tPLYZjAO1y3W9EB-WcDJtb0YxB_39zRZCGRO4";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjgwNDQsImlkIjoyLCJyb2xlIjoidXNlciJ9.CBGuIdLvitgojL4pOmwHdtgMGOlgXhPv8k0eVaaUdxo";
 
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -102,25 +132,25 @@ const FormDataForm: React.FC = () => {
       const response = await axios.post(url, formData, { headers });
       console.log("Berhasil mengirim data:", response.data);
 
-      // Set Pembayaran menjadi true untuk menampilkan popup
       SetPembayaran(true);
     } catch (error) {
       console.error("Gagal mengirim data:", error);
     }
   };
+
   useEffect(() => {
     getData();
-  }, [Id]);
+  }, []);
 
   const handleInvoice = () => {
-   
     if (item.payment_link) {
-      window.open(item.payment_link, "_blank"); // Membuka link pembayaran dalam tab baru
+      window.open(item.payment_link, "_blank");
+      navigate ('/dashboard-user');
     } else {
       console.error("Tidak ada URL pembayaran yang tersedia.");
     }
   };
-
+  
 
   return (
     <section>
@@ -155,27 +185,40 @@ const FormDataForm: React.FC = () => {
               </tr>
               <tr>
                 <td className="border px-4 py-2 font-semibold">Harga Sewa:</td>
-                <td className="border px-4 py-2">{totalHargaSewa}</td>
+                <td className="border px-4 py-2">Rp. {HargaSewa}</td>
               </tr>
               <tr>
-                <td className="border px-4 py-2 font-semibold">Jumlah Sewa:</td>
-                <td className="border px-4 py-2">{jumlahSewa}</td>
+                <td className="border px-4 py-2 font-semibold">
+                  Jumlah Sewa :
+                </td>
+                <td className="border px-4 py-2">
+                  {jumlahSewa !== null ? jumlahSewa : "Nilai tidak tersedia"}
+                </td>
               </tr>
+              <tr>
+                <td className="border px-4 py-2 font-semibold">
+                  Total Harga Sewa:
+                </td>
+                <td className="border px-4 py-2">
+                  Rp.{" "}
+                  {jumlahSewa !== null && parseInt(jumlahSewa) === 1
+                    ? HargaSewa
+                    : totalHargaSewa}
+                </td>
+              </tr>
+
               <tr>
                 <td className="border px-4 py-2 font-semibold">
                   Tanggal Mulai Pinjam:
                 </td>
                 <td className="border px-4 py-2">
                   <div>
-                    <DatePicker
-                      selected={startDate}
-                      onChange={handleStartDateChange}
-                      showTimeSelect
-                      dateFormat="yyyy-MM-dd HH:mm:ss"
-                      timeFormat="HH:mm:ss"
-                      timeIntervals={1}
-                      timeCaption="Waktu"
-                      placeholderText="Pilih Tanggal dan Waktu"
+                    <input
+                      type="text"
+                      name="start_date"
+                      value={formData.start_date}
+                      onChange={handleInputChange}
+                      placeholder="2023-10-10 00:00:00"
                       className="w-full p-2 border rounded"
                     />
                   </div>
@@ -187,15 +230,12 @@ const FormDataForm: React.FC = () => {
                 </td>
                 <td className="border px-4 py-2">
                   <div>
-                    <DatePicker
-                      selected={endDate}
-                      onChange={handleEndDateChange}
-                      showTimeSelect
-                      dateFormat="yyyy-MM-dd HH:mm:ss"
-                      timeFormat="HH:mm:ss"
-                      timeIntervals={1}
-                      timeCaption="Waktu"
-                      placeholderText="Pilih Tanggal dan Waktu"
+                    <input
+                      type="text"
+                      name="end_date"
+                      value={formData.end_date}
+                      onChange={handleInputChange}
+                      placeholder="2023-10-15 00:00:00"
                       className="w-full p-2 border rounded"
                     />
                   </div>
@@ -208,56 +248,63 @@ const FormDataForm: React.FC = () => {
             <Button
               label="Bayar"
               classname="bg-primary text-white w-full rounded-lg py-2 px-5"
-              onClick={handlePaymentAndGetData}
+              onClick={handleConfirm}
             />
           </div>
         </div>
         <Popup isOpen={Pembayaran} onClose={() => SetPembayaran(false)}>
-          <div className="flex flex-col px-10 py-10 w-full h-full  ">
-            <div className="text-center text-[24px] font-semibold bg-white w-[350px] h-full ">
-              Judul Sewa Tenda
-            </div>
-            <div className="mt-8">
-              <div className="mb-1">Biaya Sewa Tenda: {item.name}</div>
-              <div className="mb-1">Biaya Admin: Rp 100,000</div>
-              <div className="font-semibold">
-                Total Bayar: {item.total_price}
-              </div>
-            </div>
-            <hr className="my-2" />
-            <div>
-              <div className="font-semibold">ID Order: 123123192</div>
-            </div>
-            <div className="mt-6">
-              <div className="text-center text-[24px] font-semibold">
-                Detail Pesanan
-              </div>
-              <div className="mb-2">Nama Barang: {item.name}</div>
-              <div className="mb-2">Lama Sewa: 7 Hari</div>
-            </div>
-            <div className="mt-6">
-              <div className="text-center text-[24px] font-semibold">
-                Pilih Metode Bayar
-              </div>
-              <div className="font-semibold">
-                Total Bayar: sendit
-                <button
-                  className="bg-primary text-white rounded-lg px-3 ml-2"
-                  onClick={HandleInvoice}
-                >
-                  Konfirmasi
-                </button>
-              </div>
-            </div>
-            <div className="mt-8">
-              <Button
-                label="Bayar"
-                classname="bg-primary text-white w-full rounded-lg py-2 px-5   "
-                onClick={handleInvoice}
-              />
-            </div>
-          </div>
-        </Popup>
+  <div className="flex flex-col p-6 w-full h-full bg-white rounded-lg shadow-lg">
+    <h2 className="text-2xl font-semibold text-center">Judul Sewa Tenda</h2>
+    <div className="mt-4">
+      <div className="mb-2 flex justify-between">
+        <span>Biaya Sewa Tenda:</span>
+        <span>{HargaSewa}</span>
+      </div>
+      <div className="mb-2 flex justify-between">
+        <span>Biaya Admin:</span>
+        <span>Rp 5,000</span>
+      </div>
+      <div className="mb-2 flex justify-between">
+        <span>Total Bayar:</span>
+        <span>{item.total_price}</span>
+      </div>
+    </div>
+    <hr className="my-2" />
+    <div className="mb-2 font-semibold">ID {item.invoice_number}</div>
+    <div className="mt-4">
+      <h2 className="text-2xl font-semibold text-center mb-4">Detail Pesanan</h2>
+      <div className="mb-2">
+        <span>Nama Barang:</span>
+        <span>{productName}</span>
+      </div>
+      <div className="mb-2">
+        <span>Lama Sewa: {jumlahHari}</span>
+      </div>
+    </div>
+    <div className="mt-4">
+      <h2 className="text-2xl font-semibold text-center">Pembayaran Menggunakan Sendit</h2>
+      <div className="mt-4 flex items-center justify-center">
+        <span>Gunakan Sendit</span>
+        <button
+         className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 ml-2 text-sm py-1 transition duration-300 ease-in-out transform hover:scale-105"
+          onClick={HandleInvoice}
+        >
+          Konfirmasi
+        </button>
+      </div>
+    </div>
+    <div className="mt-6">
+    <Button
+  label="Bayar"
+  classname="bg-primary text-white hover:bg-blue-700 w-full rounded-lg py-2 px-5 transition duration-300 ease-in-out transform hover:scale-105"
+  onClick={handleInvoice}
+/>
+
+    </div>
+    <p className="text-white">{newId}</p>
+  </div>
+</Popup>
+
       </LayoutUser>
     </section>
   );
