@@ -14,14 +14,14 @@ let currentId = 1
 
 function generateNewId() {
   const newId = currentId;
-  currentId++; 
+  currentId++;
   return newId;
 }
 const FormDataForm: React.FC = () => {
   const [Pembayaran, SetPembayaran] = useState<boolean>(false);
   const [item, setItem] = useState<any>({});
   const idFromCookie = Cookies.get("id");
-  const [newId, setNewId] = useState<number | null>(null); 
+  const [newId, setNewId] = useState<number | null>(null);
   const [jumlahHari, setJumlahHari] = useState<number | null>(null);
   const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const FormDataForm: React.FC = () => {
       [name]: value,
     }));
   };
-  
+
   const handleConfirm = async () => {
     try {
       const url = "https://hannonapp.site/rent";
@@ -70,7 +70,7 @@ const FormDataForm: React.FC = () => {
         icon: "success",
         confirmButtonText: "OK",
       }).then((result) => {
-        if (result.isConfirmed) {      
+        if (result.isConfirmed) {
           getData();
         }
       });
@@ -85,7 +85,7 @@ const FormDataForm: React.FC = () => {
       setNewId(newGeneratedId);
     } catch (error) {
       console.error("Gagal mengirim data:", error);
-   
+
       Swal.fire({
         title: "Error!",
         text: "Isi data dengan Benar.",
@@ -119,7 +119,7 @@ const FormDataForm: React.FC = () => {
 
   const HandleInvoice = async () => {
     try {
-      
+
       const url = `https://hannonapp.site/rentpayment/11`;
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjgwNDQsImlkIjoyLCJyb2xlIjoidXNlciJ9.CBGuIdLvitgojL4pOmwHdtgMGOlgXhPv8k0eVaaUdxo";
@@ -145,12 +145,12 @@ const FormDataForm: React.FC = () => {
   const handleInvoice = () => {
     if (item.payment_link) {
       window.open(item.payment_link, "_blank");
-      navigate ('/dashboard-user');
+      navigate('/dashboard-user');
     } else {
       console.error("Tidak ada URL pembayaran yang tersedia.");
     }
   };
-  
+
 
   return (
     <section>
@@ -214,7 +214,7 @@ const FormDataForm: React.FC = () => {
                 <td className="border px-4 py-2">
                   <div>
                     <input
-                      type="text"
+                      type="date"
                       name="start_date"
                       value={formData.start_date}
                       onChange={handleInputChange}
@@ -231,7 +231,7 @@ const FormDataForm: React.FC = () => {
                 <td className="border px-4 py-2">
                   <div>
                     <input
-                      type="text"
+                      type="date"
                       name="end_date"
                       value={formData.end_date}
                       onChange={handleInputChange}
@@ -253,57 +253,57 @@ const FormDataForm: React.FC = () => {
           </div>
         </div>
         <Popup isOpen={Pembayaran} onClose={() => SetPembayaran(false)}>
-  <div className="flex flex-col p-6 w-full h-full bg-white rounded-lg shadow-lg">
-    <h2 className="text-2xl font-semibold text-center">Judul Sewa Tenda</h2>
-    <div className="mt-4">
-      <div className="mb-2 flex justify-between">
-        <span>Biaya Sewa Tenda:</span>
-        <span>{HargaSewa}</span>
-      </div>
-      <div className="mb-2 flex justify-between">
-        <span>Biaya Admin:</span>
-        <span>Rp 5,000</span>
-      </div>
-      <div className="mb-2 flex justify-between">
-        <span>Total Bayar:</span>
-        <span>{item.total_price}</span>
-      </div>
-    </div>
-    <hr className="my-2" />
-    <div className="mb-2 font-semibold">ID {item.invoice_number}</div>
-    <div className="mt-4">
-      <h2 className="text-2xl font-semibold text-center mb-4">Detail Pesanan</h2>
-      <div className="mb-2">
-        <span>Nama Barang:</span>
-        <span>{productName}</span>
-      </div>
-      <div className="mb-2">
-        <span>Lama Sewa: {jumlahHari}</span>
-      </div>
-    </div>
-    <div className="mt-4">
-      <h2 className="text-2xl font-semibold text-center">Pembayaran Menggunakan Sendit</h2>
-      <div className="mt-4 flex items-center justify-center">
-        <span>Gunakan Sendit</span>
-        <button
-         className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 ml-2 text-sm py-1 transition duration-300 ease-in-out transform hover:scale-105"
-          onClick={HandleInvoice}
-        >
-          Konfirmasi
-        </button>
-      </div>
-    </div>
-    <div className="mt-6">
-    <Button
-  label="Bayar"
-  classname="bg-primary text-white hover:bg-blue-700 w-full rounded-lg py-2 px-5 transition duration-300 ease-in-out transform hover:scale-105"
-  onClick={handleInvoice}
-/>
+          <div className="flex flex-col p-6 w-full h-full bg-white rounded-lg shadow-lg">
+            <h2 className="text-2xl font-semibold text-center">Judul Sewa Tenda</h2>
+            <div className="mt-4">
+              <div className="mb-2 flex justify-between">
+                <span>Biaya Sewa Tenda:</span>
+                <span>{HargaSewa}</span>
+              </div>
+              <div className="mb-2 flex justify-between">
+                <span>Biaya Admin:</span>
+                <span>Rp 5,000</span>
+              </div>
+              <div className="mb-2 flex justify-between">
+                <span>Total Bayar:</span>
+                <span>{item.total_price}</span>
+              </div>
+            </div>
+            <hr className="my-2" />
+            <div className="mb-2 font-semibold">ID {item.invoice_number}</div>
+            <div className="mt-4">
+              <h2 className="text-2xl font-semibold text-center mb-4">Detail Pesanan</h2>
+              <div className="mb-2">
+                <span>Nama Barang:</span>
+                <span>{productName}</span>
+              </div>
+              <div className="mb-2">
+                <span>Lama Sewa: {jumlahHari}</span>
+              </div>
+            </div>
+            <div className="mt-4">
+              <h2 className="text-2xl font-semibold text-center">Pembayaran Menggunakan Sendit</h2>
+              <div className="mt-4 flex items-center justify-center">
+                <span>Gunakan Sendit</span>
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 ml-2 text-sm py-1 transition duration-300 ease-in-out transform hover:scale-105"
+                  onClick={HandleInvoice}
+                >
+                  Konfirmasi
+                </button>
+              </div>
+            </div>
+            <div className="mt-6">
+              <Button
+                label="Bayar"
+                classname="bg-primary text-white hover:bg-blue-700 w-full rounded-lg py-2 px-5 transition duration-300 ease-in-out transform hover:scale-105"
+                onClick={handleInvoice}
+              />
 
-    </div>
-    <p className="text-white">{newId}</p>
-  </div>
-</Popup>
+            </div>
+            <p className="text-white">{newId}</p>
+          </div>
+        </Popup>
 
       </LayoutUser>
     </section>

@@ -5,16 +5,19 @@ import { useEffect, useState } from "react";
 import Button from "../../../../components/User/Bottom";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 const Item = () => {
+  const location = useLocation();
+
+  const id = location?.state?.id;
   const [data, setData] = useState<any[]>([]);
-  const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
 
   const token = Cookie.get("token");
   const getData = () => {
     axios
-      .get(`https://hannonapp.site/tenant/${id}/items`, {
+      .get(`tenant/${id}/items`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,15 +52,15 @@ const Item = () => {
             </div>
             <div className="h-max mx-5 grid grid-cols-3 gap-x-5 gap-y-5  my-14">
               {data &&
-                data?.map((item: any) => {
+                data?.map((item: any, index) => {
                   return (
                     <Card
-                      key={item.ID}
-                      id={item?.ID}
-                      title={item?.Name}
-                      image={item?.Image}
-                      price={item?.Rent_Price}
-                      category={item?.Description_Item}
+                      key={index}
+                      id={item?.id}
+                      title={item?.name}
+                      image={item?.image}
+                      price={item?.rent_price}
+                      category={item?.description_item}
                     />
                   );
                 })}
@@ -69,11 +72,11 @@ const Item = () => {
                   return (
                     <Card
                       key={index}
-                      id={item?.ID}
-                      title={item?.Name}
-                      image={item?.Image}
-                      price={item?.Rent_Price}
-                      category={item?.Description_Item}
+                      id={item?.id}
+                      title={item?.name}
+                      image={item?.image}
+                      price={item?.rent_price}
+                      category={item?.description_item}
                     />
                   );
                 })}
