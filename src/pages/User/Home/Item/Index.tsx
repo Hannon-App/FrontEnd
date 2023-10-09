@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Button from "../../../../components/User/Bottom";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Item = () => {
   const location = useLocation();
