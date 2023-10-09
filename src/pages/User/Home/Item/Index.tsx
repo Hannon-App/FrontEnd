@@ -52,10 +52,10 @@ const Item = () => {
             </div>
             <div className="h-max mx-5 grid grid-cols-3 gap-x-5 gap-y-5  my-14">
               {data &&
-                data?.map((item: any, index) => {
+                data?.map((item: any) => {
                   return (
                     <Card
-                      key={index}
+                      key={item.id}
                       id={item?.id}
                       title={item?.name}
                       image={item?.image}
@@ -68,15 +68,15 @@ const Item = () => {
             <p className="font-semibold text-2xl my-11 ml-4">Item</p>
             <div className="h-max mx-5 grid grid-cols-3 gap-x-5 gap-y-5  my-14">
               {data &&
-                data?.map((item: any, index: any) => {
+                data?.map((item: any) => {
                   return (
                     <Card
-                      key={index}
-                      id={item?.id}
-                      title={item?.name}
-                      image={item?.image}
-                      price={item?.rent_price}
-                      category={item?.description_item}
+                    key={item.id}
+                    id={item?.id}
+                    title={item?.name}
+                    image={item?.image}
+                    price={item?.rent_Price}
+                    category={item?.description_item}
                     />
                   );
                 })}

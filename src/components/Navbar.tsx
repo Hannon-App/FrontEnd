@@ -2,6 +2,8 @@ import Cookies from 'js-cookie';
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import Logo from "../assets/Hannon.svg"
+
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
@@ -10,15 +12,18 @@ const Navbar = () => {
     Cookies.remove("token");
     Cookies.remove("name");
     Cookies.remove("role");
-    navigate('/LoginTenant')
+    navigate('/login-user')
   }
   return (
     <div className="w-full">
-      <div className="flex justify-end mx-6 my-4 items-center ">
-        <div onClick={() => setOpen(!open)} className="cursor-pointer" >
-          <img className=" w-12 h-12 p-1 rounded-full" src="https://placekitten.com/200/300" alt="Bordered avatar"></img>
-        </div>
-      </div>
+  <div className="flex justify-between mx-6  items-center">
+    <div className='ml-20'>
+      <img src={Logo} style={{ width: "4rem" }} alt="" />
+    </div>
+    <div onClick={() => setOpen(!open)} className="cursor-pointer">
+      <img className="w-12 h-12 p-1 rounded-full" src="https://placekitten.com/200/300" alt="Bordered avatar"></img>
+    </div>
+  </div>
       {
         open ? (
           <motion.div

@@ -8,9 +8,7 @@ import LayoutUser from "../../../../components/User/LayoutUser";
 import Popup from "../../../../components/User/PopUp";
 import { useNavigate } from "react-router-dom";
 
-
-let currentId = 1
-
+let currentId = 340;
 
 function generateNewId() {
   const newId = currentId;
@@ -26,7 +24,7 @@ const FormDataForm: React.FC = () => {
   const navigate = useNavigate();
 
   const token = Cookies.get(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjgwNDQsImlkIjoyLCJyb2xlIjoidXNlciJ9.CBGuIdLvitgojL4pOmwHdtgMGOlgXhPv8k0eVaaUdxo"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY5MjQ0NDMsImlkIjo3LCJyb2xlIjoidXNlciJ9.Po5finfUv2YIKNPVnn3Pq6KjofiBjvhkxbm0rJRuKxI"
   );
   const productName = localStorage.getItem("productName");
   const HargaSewa = localStorage.getItem("rentPrice");
@@ -40,19 +38,26 @@ const FormDataForm: React.FC = () => {
     discount: 0,
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    // Validasi agar hanya angka yang diterima
+    if (name === "total_price" && isNaN(value)) {
+      return; 
+    }
+
+
+    setFormData({
+      ...formData,
+      [name]: name === "total_price" ? parseFloat(value) : value,
+    });
   };
 
   const handleConfirm = async () => {
     try {
       const url = "https://hannonapp.site/rent";
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjgwNDQsImlkIjoyLCJyb2xlIjoidXNlciJ9.CBGuIdLvitgojL4pOmwHdtgMGOlgXhPv8k0eVaaUdxo"; // Ganti dengan token Anda
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY5MjQ0NDMsImlkIjo3LCJyb2xlIjoidXNlciJ9.Po5finfUv2YIKNPVnn3Pq6KjofiBjvhkxbm0rJRuKxI"; // Ganti dengan token Anda
 
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -74,7 +79,10 @@ const FormDataForm: React.FC = () => {
           getData();
         }
       });
+      const newUserId = response.data.data?.data.id;
+      console.log("ID baru yang diberikan oleh server:", newUserId);
 
+    
       const startDate = new Date(formData.start_date);
       const endDate = new Date(formData.end_date);
       const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
@@ -97,7 +105,7 @@ const FormDataForm: React.FC = () => {
 
   const getData = () => {
     const newId = generateNewId();
-    console.log("Nilai id sebelum permintaan GET:", newId);
+    console.log("Nilai id sebelum permintaan GET:", idFromCookie);
     axios
       .get(`https://hannonapp.site/rent/${newId}`, {
         headers: {
@@ -119,10 +127,9 @@ const FormDataForm: React.FC = () => {
 
   const HandleInvoice = async () => {
     try {
-
-      const url = `https://hannonapp.site/rentpayment/11`;
+      const url = `https://hannonapp.site/rentpayment/317`;
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY4NjgwNDQsImlkIjoyLCJyb2xlIjoidXNlciJ9.CBGuIdLvitgojL4pOmwHdtgMGOlgXhPv8k0eVaaUdxo";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTY5MjQ0NDMsImlkIjo3LCJyb2xlIjoidXNlciJ9.Po5finfUv2YIKNPVnn3Pq6KjofiBjvhkxbm0rJRuKxI";
 
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -145,12 +152,11 @@ const FormDataForm: React.FC = () => {
   const handleInvoice = () => {
     if (item.payment_link) {
       window.open(item.payment_link, "_blank");
-      navigate('/dashboard-user');
+      navigate("/dashboard-user");
     } else {
       console.error("Tidak ada URL pembayaran yang tersedia.");
     }
   };
-
 
   return (
     <section>
@@ -206,7 +212,21 @@ const FormDataForm: React.FC = () => {
                     : totalHargaSewa}
                 </td>
               </tr>
-
+              <tr>
+                <td className="border px-4 py-2 font-semibold">Total sewa</td>
+                <td className="border px-4 py-2">
+                  <div className="relative rounded-md shadow-sm">
+                    <input
+                      type="text"
+                      id="total_price"
+                      name="total_price"
+                      value={formData.total_price}
+                      onChange={handleChange}
+                      className="form-input block w-full px-3 py-2 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </td>
+              </tr>
               <tr>
                 <td className="border px-4 py-2 font-semibold">
                   Tanggal Mulai Pinjam:
@@ -214,10 +234,10 @@ const FormDataForm: React.FC = () => {
                 <td className="border px-4 py-2">
                   <div>
                     <input
-                      type="date"
+                      type="text"
                       name="start_date"
                       value={formData.start_date}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       placeholder="2023-10-10 00:00:00"
                       className="w-full p-2 border rounded"
                     />
@@ -231,10 +251,10 @@ const FormDataForm: React.FC = () => {
                 <td className="border px-4 py-2">
                   <div>
                     <input
-                      type="date"
+                      type="text"
                       name="end_date"
                       value={formData.end_date}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       placeholder="2023-10-15 00:00:00"
                       className="w-full p-2 border rounded"
                     />
@@ -243,7 +263,6 @@ const FormDataForm: React.FC = () => {
               </tr>
             </tbody>
           </table>
-
           <div className="flex justify-center items-center my-10">
             <Button
               label="Bayar"
@@ -254,7 +273,9 @@ const FormDataForm: React.FC = () => {
         </div>
         <Popup isOpen={Pembayaran} onClose={() => SetPembayaran(false)}>
           <div className="flex flex-col p-6 w-full h-full bg-white rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold text-center">Judul Sewa Tenda</h2>
+            <h2 className="text-2xl font-semibold text-center">
+              Judul Sewa Tenda
+            </h2>
             <div className="mt-4">
               <div className="mb-2 flex justify-between">
                 <span>Biaya Sewa Tenda:</span>
@@ -262,17 +283,23 @@ const FormDataForm: React.FC = () => {
               </div>
               <div className="mb-2 flex justify-between">
                 <span>Biaya Admin:</span>
-                <span>Rp 5,000</span>
+                <span>5,000</span>
               </div>
               <div className="mb-2 flex justify-between">
                 <span>Total Bayar:</span>
-                <span>{item.total_price}</span>
+                <span className="tracking-wide">
+                  {totalHargaSewa !== null && jumlahHari !== null
+                    ? (parseFloat(totalHargaSewa) + 5000) * jumlahHari
+                    : 0}
+                </span>
               </div>
             </div>
             <hr className="my-2" />
             <div className="mb-2 font-semibold">ID {item.invoice_number}</div>
             <div className="mt-4">
-              <h2 className="text-2xl font-semibold text-center mb-4">Detail Pesanan</h2>
+              <h2 className="text-2xl font-semibold text-center mb-4">
+                Detail Pesanan
+              </h2>
               <div className="mb-2">
                 <span>Nama Barang:</span>
                 <span>{productName}</span>
@@ -282,9 +309,17 @@ const FormDataForm: React.FC = () => {
               </div>
             </div>
             <div className="mt-4">
-              <h2 className="text-2xl font-semibold text-center">Pembayaran Menggunakan Sendit</h2>
+              <h2 className="text-2xl font-semibold text-center">
+                Pembayaran Menggunakan Sendit
+              </h2>
               <div className="mt-4 flex items-center justify-center">
                 <span>Gunakan Sendit</span>
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 ml-2 text-sm py-1 transition duration-300 ease-in-out transform hover:scale-105"
+                  onClick={getData}
+                >
+                  Claim token
+                </button>
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 ml-2 text-sm py-1 transition duration-300 ease-in-out transform hover:scale-105"
                   onClick={HandleInvoice}
@@ -299,12 +334,10 @@ const FormDataForm: React.FC = () => {
                 classname="bg-primary text-white hover:bg-blue-700 w-full rounded-lg py-2 px-5 transition duration-300 ease-in-out transform hover:scale-105"
                 onClick={handleInvoice}
               />
-
             </div>
             <p className="text-white">{newId}</p>
           </div>
         </Popup>
-
       </LayoutUser>
     </section>
   );

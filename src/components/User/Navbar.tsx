@@ -1,4 +1,4 @@
-// import React from "react";
+import Cookies from 'js-cookie';
 import Button from "./Bottom";
 import { useNavigate } from "react-router";
 
@@ -8,6 +8,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const HandleLogOut = () => {
+    Cookies.remove("token");
+    Cookies.remove("name");
+    Cookies.remove("role");
     navigate('/login-user');
   };
   return (

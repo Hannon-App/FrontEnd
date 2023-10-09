@@ -49,7 +49,7 @@ const Detail = () => {
   }, [id]);
 
   const handleSewa = () => {
-    localStorage.setItem("productName", item.name);
+    localStorage.setItem("productName", item.name); 
     localStorage.setItem("rentPrice", item.rent_price);
     localStorage.setItem("jumlahSewa", totalHargaSewa);
     localStorage.setItem("jumlahSewadua", jumlahSewa);

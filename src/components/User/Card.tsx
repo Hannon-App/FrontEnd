@@ -18,7 +18,6 @@ const Card: FC<CardProps> = ({ id, title, image, price, category }) => {
     navigate(`/detail-pesanan/${id}`);
   };
 
-  // Batasi panjang teks category menjadi maksimal 100 karakter
   const maxLength = 50;
   const truncatedCategory =
     category && category.length > maxLength
